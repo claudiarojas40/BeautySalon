@@ -1,0 +1,45 @@
+﻿body {
+    background: linear-gradient(145deg, #d4d4d4, #f0f0f0);
+}
+
+.form-group {
+    background: #e0e0e0;
+    border-radius: 20px;
+    box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+    padding: 15px;
+}
+
+input, textarea {
+    background: #e0e0e0;
+    border: none;
+    border-radius: 10px;
+    box-shadow: inset 6px 6px 12px #bebebe, inset -6px -6px 12px #ffffff;
+    padding: 15px;
+    width: 100%;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+    input:focus, textarea:focus {
+        box-shadow: inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff, 0 0 5px #3498db;
+        outline: none;
+    }
+
+button {
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
+    border-radius: 15px;
+    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    padding: 10px 20px;
+    transition: background 0.3s, box-shadow 0.3s, color 0.3s;
+    color: #555;
+}
+
+    button:hover {
+        background: #d4d4d4;
+        box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+        color: #333;
+    }
+
+h1, h2 {
+    text-shadow: 2px 2px 4px #bebebe, -2px -2px 4px #ffffff;
+    color: #555;
+}

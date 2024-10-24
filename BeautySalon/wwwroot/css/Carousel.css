@@ -1,0 +1,19 @@
+﻿#myCarousel {
+    width: 80%; /* El carrusel ocupará todo el ancho de la pantalla */
+    margin: auto; /* Asegura que el carrusel esté centrado si se reduce */
+}
+
+.carousel-inner img {
+    width: 100%; /* Asegura que las imágenes ocupen todo el ancho del carrusel */
+    height: 300px; /* Ajusta la altura de las imágenes (puedes cambiar este valor) */
+    object-fit: cover; /* Asegura que las imágenes se adapten bien sin deformarse */
+}
+
+.carousel-caption h1, .carousel-caption p {
+    font-size: 2rem; /* Tamaño del texto adaptado */
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem; /* Ajusta el tamaño del botón */
+    font-size: 1.25rem;
+}
