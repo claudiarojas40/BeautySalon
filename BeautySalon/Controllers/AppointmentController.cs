@@ -48,8 +48,4 @@ namespace BeautySalon.Controllers
         }
     }
 }
-
-        
-        
-
-    
+   

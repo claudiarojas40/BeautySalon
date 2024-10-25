@@ -43,6 +43,7 @@ namespace BeautySalon.Controllers
         }
 
         // GET: Producto/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -53,10 +54,34 @@ namespace BeautySalon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,PrecioUnitario,PrecioVenta,Codigo,Imagen,Marca,FechaRegistro,FechaVencimiento,Categoria")] Producto producto)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Descripcion,PrecioUnitario,PrecioVenta,Codigo,Imagen,Marca,FechaRegistro,FechaVencimiento,Categoria")] Producto producto, IFormFile Imagen)
         {
             if (ModelState.IsValid)
             {
+                string rutaImagen = null;
+
+                // Verificar si se ha subido una imagen
+                if (Imagen != null && Imagen.Length > 0)
+                {
+                    // Obtener la ruta donde se guardará la imagen
+                    string rutaCarpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "img");
+
+                    // Crear el nombre único para la imagen
+                    string nombreArchivo = Guid.NewGuid().ToString() + Path.GetExtension(Imagen.FileName);
+
+                    // Combinar la ruta de la carpeta con el nombre del archivo
+                    string rutaCompleta = Path.Combine(rutaCarpeta, nombreArchivo);
+
+                    // Guardar la imagen en la ruta especificada
+                    using (var stream = new FileStream(rutaCompleta, FileMode.Create))
+                    {
+                        await Imagen.CopyToAsync(stream);
+                    }
+
+                    // Almacenar la ruta para guardarla en la base de datos o retornarla
+                    rutaImagen = "/img/" + nombreArchivo;
+                }
+                producto.Imagen = rutaImagen;
                 _context.Add(producto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

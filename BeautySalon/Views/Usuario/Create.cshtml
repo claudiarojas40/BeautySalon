@@ -3,8 +3,10 @@
 @{
     ViewData["Title"] = "Create";
 }
-
-<h1>Create</h1>
+<head>
+    <link rel="stylesheet" href="~/css/cajita.css" />
+</head>
+<h1>Crear</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -47,14 +49,14 @@
                 <select asp-for="IdRol" class ="form-control" asp-items="ViewBag.IdRol"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Atras</a>
 </div>
 
 @section Scripts {

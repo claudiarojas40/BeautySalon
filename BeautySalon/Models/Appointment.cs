@@ -21,4 +21,3 @@ namespace BeautySalon.Models
         public DateTime AppointmentDate { get; set; }
     }
 }
-    

@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
+<head>
+    <link rel="stylesheet" href="~/css/Crud.css" />
+</head>
+<h1>USUARIO</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear usuario</a>
 </p>
 <table class="table">
     <thead>
@@ -25,14 +27,9 @@
                 @Html.DisplayNameFor(model => model.Password)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estatus)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FechaRegistro)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdRolNavigation)
-            </th>
+
             <th></th>
         </tr>
     </thead>
@@ -52,18 +49,12 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Estatus)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.FechaRegistro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdRolNavigation.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
             </td>
         </tr>
 }
