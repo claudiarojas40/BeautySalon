@@ -5,13 +5,6 @@
     margin-top: 20px;
 }
 
-
-    .table th, .table td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
     /* Estilos para los botones */
     .table a {
         display: inline-block;
@@ -59,21 +52,3 @@
                 background-color: #D32F2F;
                 transform: scale(1.05);
             }
-
-/* Estilo para el botón 'Create New' */
-a[asp-action="Create"] {
-    display: inline-block;
-    padding: 12px 25px;
-    background-color: #FF9800; /* Naranja */
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 2px solid #FF9800;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-    a[asp-action="Create"]:hover {
-        background-color: #FB8C00;
-        transform: scale(1.05);
-    }

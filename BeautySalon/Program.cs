@@ -29,11 +29,6 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-// Aquí cambias la ruta por defecto al controlador y acción de citas
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Appointment}/{action=Create}/{id?}");
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

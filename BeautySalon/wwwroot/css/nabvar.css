@@ -1,13 +1,11 @@
-﻿/* Archivo navbar.css */
-.navbar {
-    background-color: pink; /* Cambia este color por el que prefieras */
-    border-bottom: 2px solid #333; /* Línea debajo de la barra (opcional) */
+﻿.navbar-custom {
+    background-color: #F9EBEA; /* Color verde lima */
 }
 
-    .navbar a {
-        color: blue; /* Cambia el color del texto */
-    }
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand,
+.navbar-dark .btn-outline-danger,
+.navbar-dark .btn-outline-success {
+    color: black !important;
+}
 
-        .navbar a:hover {
-            color: blueviolet; /* Color al pasar el ratón por encima */
-        }

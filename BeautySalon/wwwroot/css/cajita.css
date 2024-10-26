@@ -1,6 +1,6 @@
 ﻿/* Estilo para las cajas de texto */
 .form-control {
-    background-color: purple; /* Cambia este color al que prefieras */
+    background-color: #f3aacb; /* Cambia este color al que prefieras */
     border: 1px solid black; /* Borde verde limón */
     color: #333;
     padding: 8px;
@@ -9,7 +9,7 @@
 
     /* Estilo opcional para cuando el campo está enfocado */
     .form-control:focus {
-        background-color: mediumpurple;
+        background-color: #fdeaf2;
         border-color: #228B22;
         outline: none;
     }
