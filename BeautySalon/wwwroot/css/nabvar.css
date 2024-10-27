@@ -9,3 +9,24 @@
     color: black !important;
 }
 
+/* Estilo para el botón del menú "Ver Categorías" */
+#categoriasDropdown {
+    color: #ffffff; /* Cambia el color del texto */
+    background-color: #ffcccb; /* Fondo rosa */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 5px 10px; /* Espacio alrededor del texto */
+}
+
+    /* Estilo para el menú desplegable */
+    #categoriasDropdown + .dropdown-menu {
+        background-color: #ffe4e1; /* Un tono de rosa suave */
+        border: none; /* Sin borde */
+    }
+
+        #categoriasDropdown + .dropdown-menu .dropdown-item {
+            color: #333; /* Color del texto de los ítems */
+        }
+
+            #categoriasDropdown + .dropdown-menu .dropdown-item:hover {
+                background-color: #ffb6c1; /* Color de fondo al pasar el mouse */
+            }
