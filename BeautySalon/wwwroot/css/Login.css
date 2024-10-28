@@ -1,6 +1,6 @@
 ﻿/* Fondo de la página */
 body {
-    background-color: #2c2c2c; /* Fondo oscuro */
+    background-color: #f2f5ff; /* Fondo oscuro */
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -14,7 +14,7 @@ body {
     width: 100%;
     max-width: 400px;
     padding: 30px;
-    background: linear-gradient(145deg, #f4e3d7, #f9f0e6); /* Degradado suave */
+    background: linear-gradient(145deg, #f2f5ff, #f9f0e6); /* Degradado suave */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
