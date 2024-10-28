@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>Agendar Cita</title>
     <link rel="stylesheet" href="~/css/styles.css" />
+    <body style="background-color:#FADAD1;">
+    </body>
 </head>
 <body>
     <div class="container">
@@ -38,9 +40,12 @@
             <input asp-for="AppointmentDate" class="form-control" type="datetime-local" />
             <span asp-validation-for="AppointmentDate" class="text-danger"></span>
 
-            <button type="submit" style="background-color: #4CAF50; color: white; border: none; padding: 10px 20px; cursor: pointer;">
+            <button type="submit" style="background-color: transparent; color: #E0BBE4; border: none; padding: 10px 20px; cursor: pointer;">
                 Agendar
             </button>
+
+
+
 
         </form>
     </div>
