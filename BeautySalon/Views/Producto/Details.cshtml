@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<body style="background-color:#FADAD1;">
+</body>
 <h1>Detalle</h1>
 
 <div>
@@ -73,6 +74,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
-    <a asp-action="Index">Atras</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a> |
+    <a asp-action="Index" class="btn btn-success">Atras</a>
 </div>

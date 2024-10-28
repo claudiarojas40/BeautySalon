@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Delete";
 }
-
+<body style="background-color:#FADAD1;">
+</body>
 <h1>Eliminar</h1>
 
 <h3>¿Deseas eliminar este registro?</h3>
@@ -22,6 +23,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index">Atras</a>
+        <a asp-action="Index" class="btn btn-secondary">Atras</a>
     </form>
 </div>

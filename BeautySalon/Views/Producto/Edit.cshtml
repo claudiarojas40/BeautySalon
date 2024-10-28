@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
+<body style="background-color:#FADAD1;">
+</body>
 <h1>Editar</h1>
 
 <h4>Producto</h4>
@@ -63,15 +64,13 @@
                 <input asp-for="Categoria" class="form-control" />
                 <span asp-validation-for="Categoria" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" /> |
+                <a asp-action="Index" class="btn btn-success">Atras</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Atras</a>
 </div>
 
 @section Scripts {
