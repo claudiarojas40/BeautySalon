@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeautySalon.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeautySalon.Controllers
 {
+    [Authorize]
     public class VentaController : Controller
     {
         private readonly BDContext _context;

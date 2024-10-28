@@ -1,9 +1,11 @@
 ﻿using BeautySalon.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace BeautySalon.Controllers
 {
+    [Authorize]
     public class AppointmentController : Controller
     {
         private static List<Appointment> appointments = new List<Appointment>();

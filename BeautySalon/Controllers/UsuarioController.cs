@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BeautySalon.Controllers
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         private readonly BDContext _context;
@@ -25,6 +27,7 @@ namespace BeautySalon.Controllers
 
 
         // GET: Usuario/Login
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -33,6 +36,7 @@ namespace BeautySalon.Controllers
 
         // POST: Usuario/Login
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Login(string login, string password)
         {
             if (ModelState.IsValid)
