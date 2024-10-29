@@ -234,10 +234,18 @@ namespace BeautySalon.Controllers
             var usuario = await _context.Usuario.FindAsync(id);
             if (usuario != null)
             {
-                _context.Usuario.Remove(usuario);
+                try
+                {
+                    _context.Usuario.Remove(usuario);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    // Captura el error y muestra un mensaje de advertencia
+                    TempData["ErrorMessage"] = "Este registro no se puede borrar porque tiene dependencias en otras tablas.";
+                    return RedirectToAction("Index");
+                }
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

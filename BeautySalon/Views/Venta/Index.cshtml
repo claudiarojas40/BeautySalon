@@ -3,6 +3,23 @@
 @{
     ViewData["Title"] = "Index";
 }
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorMessage" class="alert alert-danger" role="alert">
+        <span style="color: red; font-size: 20px; font-weight: bold;">&times;</span>
+        @TempData["ErrorMessage"]
+    </div>
+
+    <script>
+        // Espera 5 segundos (5000 ms) y luego oculta el mensaje
+        setTimeout(function () {
+            var messageDiv = document.getElementById("errorMessage");
+            if (messageDiv) {
+                messageDiv.style.display = "none";
+            }
+        }, 5000);
+    </script>
+}
 <body style="background-color:#FADAD1;">
 </body>
 <head>

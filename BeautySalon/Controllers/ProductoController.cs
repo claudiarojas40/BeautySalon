@@ -142,6 +142,11 @@ namespace BeautySalon.Controllers
             return View(producto);
         }
 
+        private bool ProductoExists(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         // GET: Producto/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -161,6 +166,7 @@ namespace BeautySalon.Controllers
         }
 
         // POST: Producto/Delete/5
+        // POST: Producto/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -168,16 +174,20 @@ namespace BeautySalon.Controllers
             var producto = await _context.Producto.FindAsync(id);
             if (producto != null)
             {
-                _context.Producto.Remove(producto);
+                try
+                {
+                    _context.Producto.Remove(producto);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    // Captura el error y muestra un mensaje de advertencia
+                    TempData["ErrorMessage"] = "Este registro no se puede borrar porque tiene dependencias en otras tablas.";
+                    return RedirectToAction("Index");
+                }
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductoExists(int id)
-        {
-            return _context.Producto.Any(e => e.Id == id);
-        }
     }
 }

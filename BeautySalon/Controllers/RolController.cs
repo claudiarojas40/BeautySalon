@@ -143,10 +143,18 @@ namespace BeautySalon.Controllers
             var rol = await _context.Rol.FindAsync(id);
             if (rol != null)
             {
-                _context.Rol.Remove(rol);
+                try
+                {
+                    _context.Rol.Remove(rol);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException)
+                {
+                    // Captura el error y muestra un mensaje de advertencia
+                    TempData["ErrorMessage"] = "Este registro no se puede borrar porque tiene dependencias en otras tablas.";
+                    return RedirectToAction("Index");
+                }
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
