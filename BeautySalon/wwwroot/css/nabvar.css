@@ -1,5 +1,5 @@
 ﻿.navbar-custom {
-    background-color: #ffafc7; /* Color verde lima */
+    background-color: #FF7979; /* Color verde lima */
 }
 
 .navbar-dark .navbar-nav .nav-link,
@@ -11,15 +11,15 @@
 
 /* Estilo para el botón del menú "Ver Categorías" */
 #categoriasDropdown {
-    color: #ffffff; /* Cambia el color del texto */
-    background-color: #ffcccb; /* Fondo rosa */
+    color: black; /* Cambia el color del texto */
+    background-color: #FFA5A5; /* Fondo rosa */
     border-radius: 5px; /* Bordes redondeados */
     padding: 5px 10px; /* Espacio alrededor del texto */
 }
 
     /* Estilo para el menú desplegable */
     #categoriasDropdown + .dropdown-menu {
-        background-color: #ffe4e1; /* Un tono de rosa suave */
+        background-color: #FF7979; /* Un tono de rosa suave */
         border: none; /* Sin borde */
     }
 

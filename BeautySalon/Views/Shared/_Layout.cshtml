@@ -40,9 +40,9 @@
 
                     </ul>
                 </div>
-                <form class="d-flex" asp-action="Search" method="get">
+                <form class="d-flex ms-2" asp-action="Search" method="get">
                     <input class="form-control me-2" type="search" name="query" placeholder="Buscar..." aria-label="Buscar">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    <button class="btn btn-custom" type="submit">Buscar</button>
                 </form>
 
                 <!-- Formulario para iniciar sesión -->
@@ -52,12 +52,12 @@
 
                 <!-- Formulario para cerrar sesión -->
                 <form class="d-flex ms-2" action="@Url.Action("Logout", "Usuario")" method="post">
-                    <a class="btn btn-custom ms-2" href="@Url.Action("Index", "Logout")">Cerrar sesión</a>
+                    <button class="btn btn-custom" href="@Url.Action("Index", "Logout")">Cerrar sesión</button>
                 </form>
 
                 <!-- Formulario para agendar cita -->
                 <form class="d-flex ms-2">
-                    <a class="btn btn-custom ms-2" href="@Url.Action("Create", "Appointment")">Agendar Cita</a>
+                    <button class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar Cita</button>
                 </form>
 
             </div>
