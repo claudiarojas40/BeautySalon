@@ -1,115 +1,122 @@
 ﻿@model BeautySalon.Models.Venta
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
 
 <body style="background-color:#FADAD1;">
-</body>
+    <body/>
+    <h1>Detalle</h1>
 
-<h1>Detalle</h1>
+    <!-- Contenedor principal de la venta -->
+    <div class="detalle">
+        <h4>Venta</h4>
+        <hr />
 
-<!-- Cuadro alrededor del contenido -->
-<div class="detalle-cuadro">
-    <h4>Venta</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.VentasExentas)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.VentasExentas):</strong>
             @Html.DisplayFor(model => model.VentasExentas)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Descuento)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Descuento):</strong>
             @Html.DisplayFor(model => model.Descuento)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Iva)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Iva):</strong>
             @Html.DisplayFor(model => model.Iva)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Fecha):</strong>
             @Html.DisplayFor(model => model.Fecha)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Total):</strong>
             @Html.DisplayFor(model => model.Total)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.TotalPagar)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.TotalPagar):</strong>
             @Html.DisplayFor(model => model.TotalPagar)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Codigo):</strong>
             @Html.DisplayFor(model => model.Codigo)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Nombre):</strong>
             @Html.DisplayFor(model => model.Nombre)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Direccion):</strong>
             @Html.DisplayFor(model => model.Direccion)
-        </dd>
+        </div>
 
-        <dt class="col-sm-3">
-            @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
-        </dt>
-        <dd class="col-sm-9">
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.IdUsuarioNavigation):</strong>
             @Html.DisplayFor(model => model.IdUsuarioNavigation.Id)
-        </dd>
-    </dl>
+        </div>
+    </div>
 
     <!-- Contenedor para los botones -->
     <div class="botones">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a>
-        <a asp-action="Index" asp-route-id="@Model?.Id" class="btn btn-success">Atras</a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning boton-editar">Editar</a>
+        <a asp-action="Index" asp-route-id="@Model?.Id" class="btn btn-success boton-atras">Atrás</a>
     </div>
-</div>
+</body>
 
 <style>
-    .detalle-cuadro {
-        max-width: 600px; /* Ancho máximo del cuadro */
-        margin: auto; /* Centra el cuadro en la página */
-        padding: 20px; /* Espaciado interno del cuadro */
-        background-color: #f5d1c8; /* Color de fondo del cuadro */
-        border: 2px solid #e0bfb7; /* Borde del cuadro */
-        border-radius: 8px; /* Bordes redondeados */
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra del cuadro */
+    .detalle {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f5d1c8;
+        border-radius: 8px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     }
+
+    .detalle-item {
+        background-color: #ffe6e1;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 6px;
+        border: 1px solid #e0bfb7;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .detalle-item strong {
+            font-weight: bold;
+            color: #333;
+        }
 
     .botones {
-        display: flex; /* Usa flexbox para alinear los botones */
-        justify-content: center; /* Centra los botones horizontalmente */
-        margin-top: 20px; /* Espacio superior */
+        text-align: center;
+        margin-top: 15px;
     }
 
-    .btn {
-        margin: 0 10px; /* Espacio entre los botones */
+    .boton-editar, .boton-atras {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .boton-editar {
+        background-color: #FFD54F;
+    }
+
+    .boton-atras {
+        background-color: #4CAF50;
     }
 </style>

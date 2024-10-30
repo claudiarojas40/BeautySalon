@@ -1,49 +1,94 @@
 ﻿@model BeautySalon.Models.DetalleVenta
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
-<body style="background-color:#FADAD1;">
-</body>
-<h1>Detalles</h1>
 
-<div>
-    <h4>DetalleVenta</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Precio)
-        </dt>
-        <dd class = "col-sm-10">
+<body style="background-color:#FADAD1;">
+    <body/>
+    <h1>Detalles</h1>
+
+    <div class="detalle">
+        <h4>Detalle de la Venta</h4>
+        <hr />
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Precio):</strong>
             @Html.DisplayFor(model => model.Precio)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Suma)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Suma):</strong>
             @Html.DisplayFor(model => model.Suma)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cantidad)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Cantidad):</strong>
             @Html.DisplayFor(model => model.Cantidad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdProductoNavigation)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.IdProductoNavigation):</strong>
             @Html.DisplayFor(model => model.IdProductoNavigation.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdVentaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.IdVentaNavigation):</strong>
             @Html.DisplayFor(model => model.IdVentaNavigation.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a> |
-    <a asp-action="Index" class="btn btn-success">Atras</a>
-</div>
+        </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning boton-editar">Editar</a>
+        <a asp-action="Index" class="btn btn-success boton-atras">Atrás</a>
+    </div>
+</body>
+
+<style>
+    .detalle {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f5d1c8;
+        border-radius: 8px;
+    }
+
+    .detalle-item {
+        background-color: #ffe6e1;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 6px;
+        border: 1px solid #e0bfb7;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .detalle-item strong {
+            font-weight: bold;
+            color: #333;
+        }
+
+    .botones {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .boton-editar, .boton-atras {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .boton-editar {
+        background-color: #FFD54F;
+    }
+
+    .boton-atras {
+        background-color: #4CAF50;
+    }
+</style>

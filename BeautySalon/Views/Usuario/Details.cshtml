@@ -1,62 +1,105 @@
 ﻿@model BeautySalon.Models.Usuario
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
+
 <body style="background-color:#FADAD1;">
-</body>
-<h1>Detalle</h1>
+    <body/>
+    <h1>Detalle</h1>
 
-<div>
-    <h4>Usuario</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
+    <div class="detalle">
+        <h4>Usuario</h4>
+        <hr />
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Nombre):</strong>
             @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estatus)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estatus)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaRegistro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaRegistro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdRolNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdRolNavigation.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Editar</a> |
-    <a asp-action="Index" class="btn btn-success">Atras</a>
-</div>
+        </div>
 
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Apellido):</strong>
+            @Html.DisplayFor(model => model.Apellido)
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Login):</strong>
+            @Html.DisplayFor(model => model.Login)
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Password):</strong>
+            @Html.DisplayFor(model => model.Password)
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.Estatus):</strong>
+            @Html.DisplayFor(model => model.Estatus)
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.FechaRegistro):</strong>
+            @Html.DisplayFor(model => model.FechaRegistro)
+        </div>
+
+        <div class="detalle-item">
+            <strong>@Html.DisplayNameFor(model => model.IdRolNavigation):</strong>
+            @Html.DisplayFor(model => model.IdRolNavigation.Id)
+        </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="botones">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning boton-editar">Editar</a>
+        <a asp-action="Index" class="btn btn-success boton-atras">Atrás</a>
+    </div>
+</body>
+
+<style>
+    .detalle {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f5d1c8;
+        border-radius: 8px;
+    }
+
+    .detalle-item {
+        background-color: #ffe6e1;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 6px;
+        border: 1px solid #e0bfb7;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+        .detalle-item strong {
+            font-weight: bold;
+            color: #333;
+        }
+
+    .botones {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .boton-editar, .boton-atras {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .boton-editar {
+        background-color: #FFD54F;
+    }
+
+    .boton-atras {
+        background-color: #4CAF50;
+    }
+</style>
