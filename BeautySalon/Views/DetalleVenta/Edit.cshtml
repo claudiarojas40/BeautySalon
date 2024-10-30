@@ -5,6 +5,7 @@
 }
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,17 +18,29 @@
         }
 
         .form-container {
-            background-color: ; /* Fondo blanco para el contenedor del formulario */
-            padding: 30px;
+            background-color: ;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .form-label {
-            font-weight: bold; /* Resalta las etiquetas */
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="form-container">
@@ -37,45 +50,44 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
                 <input type="hidden" asp-for="Id" />
 
-                <!-- Grid de filas con dos columnas -->
-                <div class="row mb-3">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="Precio" class="form-label"></label>
+                            <label asp-for="Precio" class="form-label">Precio</label>
                             <input asp-for="Precio" class="form-control" />
                             <span asp-validation-for="Precio" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="Suma" class="form-label"></label>
+                            <label asp-for="Suma" class="form-label">Suma</label>
                             <input asp-for="Suma" class="form-control" />
                             <span asp-validation-for="Suma" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="IdProducto" class="form-label"></label>
+                            <label asp-for="IdProducto" class="form-label">Producto</label>
                             <select asp-for="IdProducto" class="form-control" asp-items="ViewBag.IdProducto"></select>
                             <span asp-validation-for="IdProducto" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="IdVenta" class="form-label"></label>
+                            <label asp-for="IdVenta" class="form-label">Venta</label>
                             <select asp-for="IdVenta" class="form-control" asp-items="ViewBag.IdVenta"></select>
                             <span asp-validation-for="IdVenta" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label asp-for="Cantidad" class="form-label"></label>
+                            <label asp-for="Cantidad" class="form-label">Cantidad</label>
                             <input asp-for="Cantidad" class="form-control" />
                             <span asp-validation-for="Cantidad" class="text-danger"></span>
                         </div>
@@ -83,9 +95,9 @@
                 </div>
 
                 <!-- Botones alineados al centro -->
-                <div class="text-center mt-4">
-                    <input type="submit" value="Guardar" class="btn btn-primary me-2" />
-                    <a asp-action="Index" class="btn btn-success">Atrás</a>
+                <div class="btn-container mt-4">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a asp-action="Index" class="btn btn-secondary">Atrás</a>
                 </div>
             </form>
         </div>
@@ -97,4 +109,5 @@
         }
     }
 </body>
+
 </html>
