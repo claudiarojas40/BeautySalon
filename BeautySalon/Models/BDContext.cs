@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using BeautySalon.Models;
 
 namespace BeautySalon.Models;
 
@@ -68,4 +69,6 @@ public partial class BDContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+   
+public DbSet<BeautySalon.Models.Citas> Citas { get; set; } = default!;
 }
