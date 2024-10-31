@@ -1,5 +1,5 @@
 ﻿.navbar-custom {
-    background-color: #FF7979; /* Color verde lima */
+    background-color: #00e5e5; /* Color verde lima */
 }
 
 .navbar-dark .navbar-nav .nav-link,
@@ -12,7 +12,7 @@
 /* Estilo para el botón del menú "Ver Categorías" */
 #categoriasDropdown {
     color: black; /* Cambia el color del texto */
-    background-color: #FFA5A5; /* Fondo rosa */
+    background-color: #ffffff; /* Fondo rosa */
     border-radius: 5px; /* Bordes redondeados */
     padding: 5px 10px; /* Espacio alrededor del texto */
 }

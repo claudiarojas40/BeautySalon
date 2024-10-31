@@ -34,7 +34,7 @@
                                 <li><a class="dropdown-item" asp-controller="DetalleVenta" asp-action="Index">DetalleVenta</a></li>
                                 <li><a class="dropdown-item" asp-controller="Producto" asp-action="Index">Producto</a></li>
                                 <li><a class="dropdown-item" asp-controller="Home" asp-action="Index">Home</a></li>
-                             
+                                <li><a class="dropdown-item" asp-controller="Citas" asp-action="Index">Citas</a></li>
                             </ul>
                         </li>
 
@@ -54,12 +54,6 @@
                 <form class="d-flex ms-2" action="@Url.Action("Logout", "Usuario")" method="post">
                     <button class="btn btn-custom" href="@Url.Action("Index", "Logout")">Cerrar sesión</button>
                 </form>
-
-                <!-- Formulario para agendar cita -->
-                <form class="d-flex ms-2">
-                    <button class="btn btn-custom" href="@Url.Action("Create", "Appointment")">Agendar Cita</button>
-                </form>
-
             </div>
         </nav>
     </header>
