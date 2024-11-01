@@ -1,5 +1,5 @@
 ﻿.navbar-custom {
-    background-color: #00e5e5; /* Color verde lima */
+    background: linear-gradient(to right, #B429BF, #6C5FF3);
 }
 
 .navbar-dark .navbar-nav .nav-link,
@@ -10,23 +10,22 @@
 }
 
 /* Estilo para el botón del menú "Ver Categorías" */
-#categoriasDropdown {
-    color: black; /* Cambia el color del texto */
-    background-color: #ffffff; /* Fondo rosa */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 5px 10px; /* Espacio alrededor del texto */
+#categoriasDropdown + .dropdown-menu {
+    background: linear-gradient(135deg, #F0F4F8, #D0E6F1);
+    border: none;
 }
 
+
     /* Estilo para el menú desplegable */
-    #categoriasDropdown + .dropdown-menu {
-        background-color: #FF7979; /* Un tono de rosa suave */
-        border: none; /* Sin borde */
-    }
+#categoriasDropdown + .dropdown-menu {
+    background-color: #E0F7FA; /* Muy claro y agradable */
+    border: none; /* Sin borde */
+}
 
         #categoriasDropdown + .dropdown-menu .dropdown-item {
             color: #333; /* Color del texto de los ítems */
         }
 
             #categoriasDropdown + .dropdown-menu .dropdown-item:hover {
-                background-color: #ffb6c1; /* Color de fondo al pasar el mouse */
+                background-color: #E0F7FA; /* Color de fondo al pasar el mouse */
             }

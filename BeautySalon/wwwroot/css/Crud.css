@@ -15,7 +15,7 @@ h1, h2, h3 {
 
 /* Contenedor del CRUD */
 .container-crud {
-    background-color: #F5F5F5;
+    background-color: #FFFFFF;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -33,7 +33,7 @@ table {
 }
 
     table thead {
-        background-color: #E57373; /* Rojo claro */
+        background: linear-gradient(135deg, #B429BF, #6C5FF3);
         color: #333;
     }
 
@@ -56,19 +56,19 @@ table {
 
 /* Botones CRUD en tonos rojos */
 .btn-add {
-    background-color: #D32F2F; /* Rojo principal */
-    color: white;
+    background: linear-gradient(to right, #6a1b9a, #1976d2); /* Púrpura a Azul */
+    color: transparent; /* Manteniendo transparente */
 }
-
 .btn-edit {
-    background-color: #E57373; /* Rojo claro */
-    color: white;
+    background: linear-gradient(to right, #6a1b9a, #1976d2); /* Púrpura a Azul */
+    color: transparent; /* Manteniendo transparente */
 }
 
 .btn-delete {
-    background-color: #B71C1C; /* Rojo oscuro */
-    color: white;
+    background: linear-gradient(to right, #6a1b9a, #1976d2); /* Púrpura a Azul */
+    color: transparent; /* Manteniendo transparente */
 }
+
 
 /* Hover para botones */
 .btn:hover {
@@ -84,11 +84,11 @@ input, select, textarea {
     border: 1px solid #ddd;
     margin-bottom: 15px;
     box-sizing: border-box;
-    background-color: #FAF0F0;
+    background-color: #FFFFFF;
 }
 
     input:focus, select:focus, textarea:focus {
-        border-color: #E57373;
+        border-color: #FFFFFF;
         outline: none;
         box-shadow: 0 0 5px rgba(216, 141, 165, 0.5);
     }
@@ -97,7 +97,7 @@ input, select, textarea {
 .footer {
     text-align: center;
     padding: 10px 0;
-    background-color: #FAF0F0;
+    background-color: #FFFFFF;
     color: #666;
     border-top: 1px solid #ddd;
 }
@@ -128,9 +128,9 @@ input, select, textarea {
 
     /* Botón Detalles */
     .table a[href*='Details'] {
-        background-color: #D32F2F; /* Rojo principal */
+        background-color: #B3E5B3; /* Rojo principal */
         color: white;
-        border: 2px solid #D32F2F;
+        border: 2px solid #B3E5B3;
     }
 
         .table a[href*='Details']:hover {

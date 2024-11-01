@@ -1,6 +1,6 @@
 ﻿/* Estilo para las cajas de texto */
 .form-control {
-    background-color: #e0b0ff; /* Cambia este color al que prefieras */
+    background-color: #ffffff; /* Cambia este color al que prefieras */
     border: 1px solid black; /* Borde verde limón */
     color: #333;
     padding: 8px;
@@ -16,8 +16,8 @@
 
 /* Botón Crear con color personalizado */
 .btn-primary {
-    background-color: #32CD32;
-    border-color: #32CD32;
+    background-color: #000000;
+    border-color: #000000;
 }
 
     .btn-primary:hover {
