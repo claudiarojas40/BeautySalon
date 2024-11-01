@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BeautySalon.Models
 {
@@ -21,7 +22,8 @@ namespace BeautySalon.Models
         [StringLength(250)]
         public string Servicios { get; set; }
 
-        public DateOnly Fecha { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? FechaRegistro { get; set; }
 
         [Required]
         [Phone]

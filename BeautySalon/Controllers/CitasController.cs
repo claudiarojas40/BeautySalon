@@ -81,7 +81,7 @@ namespace BeautySalon.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreCompleto,CorreoElectronico,NumeroContacto,Servicios,FechaRegisro")] Citas cita)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,NombreCompleto,CorreoElectronico,NumeroContacto,Servicios,FechaRegistro")] Citas cita)
         {
             if (id != cita.Id)
             {
