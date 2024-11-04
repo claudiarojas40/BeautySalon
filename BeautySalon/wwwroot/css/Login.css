@@ -1,10 +1,30 @@
-﻿/* Configura el fondo de la página y centra el cuadro de inicio de sesión */
+﻿/* Fondo de la página */
+body {
+    background-image: url('/Imagenes/ftiniciarsesion.jpg'); /* Ruta a la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+    background-position: center; /* Centra la imagen de fondo */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+/* Estilo de la imagen del logo */
+.login-container img {
+    width: 145px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    border: 2px solid #d4a373; /* Borde dorado */
+}
+/* Configura el fondo de la página y centra el cuadro de inicio de sesión */
 body {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #e0f2e9; /* Fondo verde claro */
+    background-color: white; /* Fondo verde claro */
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -18,7 +38,7 @@ body {
 }
 
 .Email-box {
-    background-color: #ffffff;
+    background-color: black;
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -27,7 +47,7 @@ body {
 }
 
 h2 {
-    color: #2e7d32; /* Verde oscuro para el título */
+    color: white; /* Verde oscuro para el título */
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -35,7 +55,7 @@ h2 {
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    color: #2e7d32; /* Verde oscuro para las etiquetas */
+    color: white; /* Verde oscuro para las etiquetas */
     font-weight: bold;
 }
 
@@ -45,15 +65,15 @@ h2 {
     margin: 10px 0;
     border: 1px solid #a5d6a7;
     border-radius: 5px;
-    background-color: #e8f5e9; /* Verde muy claro para los campos de entrada */
-    color: #2e7d32; /* Verde oscuro para el texto en los campos de entrada */
+    background-color: white; /* Verde muy claro para los campos de entrada */
+    color: white; /* Verde oscuro para el texto en los campos de entrada */
 }
 
 .btn-login {
     width: 100%;
     padding: 10px;
-    background-color: #4caf50; /* Verde medio para el botón */
-    color: #ffffff;
+    background-color: mediumorchid; /* Verde medio para el botón */
+    color: white;
     font-size: 16px;
     border: none;
     border-radius: 5px;
@@ -62,23 +82,18 @@ h2 {
 }
 
     .btn-login:hover {
-        background-color: #388e3c; /* Verde más oscuro al pasar el cursor */
+        background-color: mediumpurple; /* Verde más oscuro al pasar el cursor */
     }
 
-a {
-    color: #388e3c; /* Verde para el enlace */
-    font-size: 14px;
-    text-decoration: none;
+
+a:hover {
+    text-decoration: underline;
 }
-
-    a:hover {
-        text-decoration: underline;
-    }
 
 footer p {
     margin-top: 20px;
     font-size: 14px;
-    color: #2e7d32; /* Verde oscuro para el texto del pie de página */
+    color: white; /* Verde oscuro para el texto del pie de página */
 }
 /* Alinea las etiquetas y entradas en una sola fila */
 .form-group {
@@ -90,7 +105,7 @@ footer p {
     .form-group label {
         width: 100px; /* Ajusta según sea necesario */
         text-align: left;
-        color: #2e7d32;
+        color: white;
         font-weight: bold;
     }
 

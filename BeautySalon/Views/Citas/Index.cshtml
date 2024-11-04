@@ -4,57 +4,62 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Citas</h1>
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="errorMessage" class="alert alert-danger" role="alert">
+        <span style="color: red; font-size: 20px; font-weight: bold;">&times;</span>
+        @TempData["ErrorMessage"]
+    </div>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Crear Citas</a>
-</p>
+    <script>
+        // Espera 5 segundos (5000 ms) y luego oculta el mensaje
+        setTimeout(function () {
+            var messageDiv = document.getElementById("errorMessage");
+            if (messageDiv) {
+                messageDiv.style.display = "none";
+            }
+        }, 5000);
+    </script>
+}
 
+<body style="background-color:#F5F5F5;">
+</body>
+
+<head>
+    <link rel="stylesheet" href="~/css/Crud.css" />
+</head>
+
+<h1>CITAS</h1>
+<a href="/Citas/Create" class="btn btn-primary">Crear Citas</a>
+<a href="@Url.Action("ExportarPDF", "Citas")" class="btn btn-primary">Exportar a PDF</a>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NombreCompleto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CorreoElectronico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroContacto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Servicios)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaRegistro)
-            </th>
-           
+            <th>@Html.DisplayNameFor(model => model.NombreCompleto)</th>
+            <th>@Html.DisplayNameFor(model => model.CorreoElectronico)</th>
+            <th>@Html.DisplayNameFor(model => model.NumeroContacto)</th>
+            <th>@Html.DisplayNameFor(model => model.Servicios)</th>
+            <th>@Html.DisplayNameFor(model => model.FechaRegistro)</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NombreCompleto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorreoElectronico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroContacto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Servicios)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistro)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalles</a>
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.NombreCompleto)</td>
+                <td>@Html.DisplayFor(modelItem => item.CorreoElectronico)</td>
+                <td>@Html.DisplayFor(modelItem => item.NumeroContacto)</td>
+                <td>@Html.DisplayFor(modelItem => item.Servicios)</td>
+                <td>@Html.DisplayFor(modelItem => item.FechaRegistro)</td>
+                <td>
+                    <div class="d-flex justify-content-around">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary btn-sm">Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

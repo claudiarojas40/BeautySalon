@@ -1,6 +1,6 @@
 ﻿/* Fondo general */
 body {
-    background-color: #FAF0F0; /* Fondo gris muy claro */
+    background-color: #D8BFD8; /* Fondo gris muy claro */
     font-family: 'Arial', sans-serif;
     color: black;
     margin: 0;
@@ -9,13 +9,13 @@ body {
 
 /* Encabezados */
 h1, h2, h3 {
-    color: #B71C1C; /* Rojo oscuro */
+    color: #D8BFD8; /* Rojo oscuro */
     font-family: 'Georgia', serif;
 }
 
 /* Contenedor del CRUD */
 .container-crud {
-    background-color: #FFFFFF;
+    background-color: #D8BFD8;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -33,7 +33,7 @@ table {
 }
 
     table thead {
-        background: linear-gradient(135deg, #B429BF, #6C5FF3);
+        background: linear-gradient(135deg, #D8BFD8, #D8BFD8);
         color: #333;
     }
 
@@ -59,13 +59,14 @@ table {
     background: linear-gradient(to right, #6a1b9a, #1976d2); /* Púrpura a Azul */
     color: transparent; /* Manteniendo transparente */
 }
+
 .btn-edit {
-    background: linear-gradient(to right, #6a1b9a, #1976d2); /* Púrpura a Azul */
+    background: linear-gradient(to right, #B3E5B3, #B3E5B3); /* Púrpura a Azul */
     color: transparent; /* Manteniendo transparente */
 }
 
 .btn-delete {
-    background: linear-gradient(to right, #6a1b9a, #1976d2); /* Púrpura a Azul */
+    background: linear-gradient(to right, #FFE4E1, #FFE4E1); /* Púrpura a Azul */
     color: transparent; /* Manteniendo transparente */
 }
 
@@ -116,36 +117,36 @@ input, select, textarea {
 
     /* Botón Editar */
     .table a[href*='Edit'] {
-        background-color: #E57373; /* Rojo claro */
-        color: white;
-        border: 2px solid #E57373;
+        background-color: #fdfd96; /* Rojo claro */
+        color: dimgrey;
+        border: 2px solid #fdfd96;
     }
 
         .table a[href*='Edit']:hover {
-            background-color: #D32F2F;
+            background-color: #fdfd96;
             transform: scale(1.05);
         }
 
     /* Botón Detalles */
     .table a[href*='Details'] {
         background-color: #B3E5B3; /* Rojo principal */
-        color: white;
+        color: dimgrey;
         border: 2px solid #B3E5B3;
     }
 
         .table a[href*='Details']:hover {
-            background-color: #B71C1C;
+            background-color: #B3E5B3;
             transform: scale(1.05);
         }
 
     /* Botón Eliminar */
     .table a[href*='Delete'] {
-        background-color: #B71C1C; /* Rojo oscuro */
-        color: white;
-        border: 2px solid #B71C1C;
+        background-color: #b6ffff; /* Rojo oscuro */
+        color: dimgrey;
+        border: 2px solid #b6ffff;
     }
 
         .table a[href*='Delete']:hover {
-            background-color: #7F0000;
+            background-color: #b6ffff;
             transform: scale(1.05);
         }
