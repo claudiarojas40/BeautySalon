@@ -1,6 +1,6 @@
 ﻿/* Fondo de la página */
 body {
-    background-image: url('/Imagenes/ftiniciarsesion.jpg'); /* Ruta a la imagen de fondo */
+    background-image: url('/Imagenes/rosaa.jpg'); /* Ruta a la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
     background-position: center; /* Centra la imagen de fondo */
