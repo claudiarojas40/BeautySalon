@@ -1,28 +1,28 @@
 ﻿@model BeautySalon.Models.Rol
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Rol";
 }
-<body style="background-color:#FADAD1;">
-</body>
-<h1>Eliminar</h1>
 
-<h3>¿Deseas eliminar este registro?</h3>
-<div>
-    <h4>Rol</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-secondary">Atras</a>
-    </form>
+<div style="background-color: #FADAD1; padding: 20px; border-radius: 8px;">
+    <h1 class="text-center text-danger">Eliminar Rol</h1>
+    <h3 class="text-center">¿Estás seguro de que deseas eliminar este rol?</h3>
+    <div class="container mt-4" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background-color: white;">
+        <h4 class="text-primary">Detalles del Rol</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" class="text-center mt-4">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Eliminar" class="btn btn-danger me-2" style="width: 120px;" />
+            <a asp-action="Index" class="btn btn-secondary" style="width: 120px;">Atrás</a>
+        </form>
+    </div>
 </div>

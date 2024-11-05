@@ -1,82 +1,91 @@
 ﻿@model BeautySalon.Models.Venta
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Venta";
 }
-<body style="background-color:#FADAD1;">
-</body>
-<h1>Eiliminar</h1>
 
-<h3>¿Deseas eliminar este registro?</h3>
-<div>
-    <h4>Venta</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VentasExentas)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VentasExentas)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descuento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descuento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Iva)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Iva)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Fecha)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Fecha)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Total)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Total)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalPagar)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalPagar)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Codigo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Codigo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdUsuarioNavigation.Id)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-success">Atras</a>
-    </form>
+<div style="background-color: #FADAD1; padding: 20px; border-radius: 8px;">
+    <h1 class="text-center text-danger">Eliminar Venta</h1>
+    <h3 class="text-center">¿Estás seguro de que deseas eliminar este registro?</h3>
+    <div class="container mt-4" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background-color: white;">
+        <h4 class="text-primary">Detalles de la Venta</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.VentasExentas)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.VentasExentas)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Descuento)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Descuento)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Iva)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Iva)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Fecha)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Total)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Total)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.TotalPagar)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.TotalPagar)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Direccion)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Direccion)
+            </dd>
+
+            <dt class="col-sm-4 font-weight-bold">
+                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.IdUsuarioNavigation.Id)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete" class="text-center mt-4">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Eliminar" class="btn btn-danger me-2" style="width: 120px;" />
+            <a asp-action="Index" class="btn btn-secondary" style="width: 120px;">Atrás</a>
+        </form>
+    </div>
 </div>
