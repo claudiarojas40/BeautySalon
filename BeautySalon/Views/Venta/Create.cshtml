@@ -3,85 +3,79 @@
 @{
     ViewData["Title"] = "Create";
 }
-<body style="background-color:#F5F5F5;">
-</body>
-<h1>Crear</h1>
 
-<h4>Venta</h4>
-<hr />
-<div class="row">
-    <div class="col-md-8">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div style="background-color: #F3E5F5; padding: 20px; border-radius: 8px;">
+    <h1 class="text-center" style="color: #7B1FA2;">Crear Venta</h1>
+    <h4 class="text-center" style="color: #2c3e50;">Información de la Venta</h4>
+    <hr />
+    <div class="container" style="border: 1px solid #D8BFD8; padding: 20px; border-radius: 8px; background-color: #F3E5F5;">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="row">
-                <!-- Primera columna -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="VentasExentas" class="control-label"></label>
-                        <input asp-for="VentasExentas" class="form-control" />
-                        <span asp-validation-for="VentasExentas" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Descuento" class="control-label"></label>
-                        <input asp-for="Descuento" class="form-control" />
-                        <span asp-validation-for="Descuento" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Iva" class="control-label"></label>
-                        <input asp-for="Iva" class="form-control" />
-                        <span asp-validation-for="Iva" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Fecha" class="control-label"></label>
-                        <input asp-for="Fecha" class="form-control" />
-                        <span asp-validation-for="Fecha" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Total" class="control-label"></label>
-                        <input asp-for="Total" class="form-control" />
-                        <span asp-validation-for="Total" class="text-danger"></span>
-                    </div>
-                </div>
+                    <div class="row">
+                        <!-- Primera columna -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="VentasExentas" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="VentasExentas" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="VentasExentas" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Descuento" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="Descuento" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="Descuento" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Iva" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="Iva" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="Iva" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Fecha" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="Fecha" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="Fecha" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Total" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="Total" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="Total" class="text-danger"></span>
+                            </div>
+                        </div>
 
-                <!-- Segunda columna -->
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label asp-for="TotalPagar" class="control-label"></label>
-                        <input asp-for="TotalPagar" class="form-control" />
-                        <span asp-validation-for="TotalPagar" class="text-danger"></span>
+                        <!-- Segunda columna -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="TotalPagar" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="TotalPagar" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="TotalPagar" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Codigo" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="Codigo" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="Codigo" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Nombre" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="Nombre" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Direccion" class="control-label font-weight-bold" style="color: black;"></label>
+                                <input asp-for="Direccion" class="form-control" style="border: 1px solid #CE93D8;" />
+                                <span asp-validation-for="Direccion" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="IdUsuario" class="control-label font-weight-bold" style="color: black;"></label>
+                                <select asp-for="IdUsuario" class="form-control" style="border: 1px solid #CE93D8;" asp-items="ViewBag.IdUsuario"></select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Codigo" class="control-label"></label>
-                        <input asp-for="Codigo" class="form-control" />
-                        <span asp-validation-for="Codigo" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Nombre" class="control-label"></label>
-                        <input asp-for="Nombre" class="form-control" />
-                        <span asp-validation-for="Nombre" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Direccion" class="control-label"></label>
-                        <input asp-for="Direccion" class="form-control" />
-                        <span asp-validation-for="Direccion" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="IdUsuario" class="control-label"></label>
-                        <select asp-for="IdUsuario" class="form-control" asp-items="ViewBag.IdUsuario"></select>
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-group mt-3">
-                <input type="submit" value="Crear" class="btn btn-primary" /> |
-                <a asp-action="Index" class="btn btn-success">Atras</a>
-            </div>
-        </form>
-    </div>
-</div>
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+                    <div class="form-group mt-4 text-center">
+                        <input type="submit" value="Crear" class="btn" style="background-color: #7B1FA2; color: white; border: none; width: 120px;" />
+                        <a asp-action="Index" class="btn" style="background-color: #9575CD; color: white; border: none; width: 120px;">Atrás</a>
+                    </div>
+                </form>
+            </div
