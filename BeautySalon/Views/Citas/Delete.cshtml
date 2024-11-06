@@ -5,12 +5,10 @@
 }
 
 <div style="background-color: #F5F5F5; padding: 20px; border-radius: 8px;">
-    <h1 class="text-center text-danger">Eliminar Cita</h1>
-    <h3 class="text-center">¿Estás seguro de que deseas eliminar esta cita?</h3>
-    <div class="container mt-4" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background-color: white;">
-        <h4 class="text-primary">Detalles de la Cita</h4>
-        <hr />
-        <dl class="row">
+    <h1 class="text-center text-danger">Eliminar Citas</h1>
+    <h3 class="text-center">¿Deseas eliminar este registro?</h3>
+    <div class="container" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background-color: white;">
+        <dl class="row mb-4">
             <dt class="col-sm-4 font-weight-bold">
                 @Html.DisplayNameFor(model => model.NombreCompleto)
             </dt>
@@ -49,8 +47,8 @@
 
         <form asp-action="Delete" class="text-center mt-4">
             <input type="hidden" asp-for="Id" />
-            <input type="submit" value="Eliminar" class="btn btn-danger me-2" style="width: 120px;" />
-            <a asp-action="Index" class="btn btn-secondary" style="width: 120px;">Atrás</a>
+            <input type="submit" value="Eliminar" class="btn btn-danger mr-2" style="width: 120px;" />
+                <a asp-action="Index" class="btn btn-success" style="width: 120px;">Atrás</a>
         </form>
     </div>
 </div>

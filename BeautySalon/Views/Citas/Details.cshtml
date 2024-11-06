@@ -4,43 +4,43 @@
     ViewData["Title"] = "Detalles de Cita";
 }
 
-<body style="background-color:#FADAD1;">
-    <h1>Detalles de Cita</h1>
+<body style="background-color:#F7F9FC;">
+        <h1 class="text-center" style="color: #424242;">Detalles de Cita</h1>
 
-    <div class="detalle">
-        <h4>Detalles de la Cita</h4>
-        <hr />
+        <div class="detalle">
+            <hr />
 
-        <div class="detalle-item">
-            <strong>@Html.DisplayNameFor(model => model.NombreCompleto):</strong>
-            @Html.DisplayFor(model => model.NombreCompleto)
+            <div class="detalle-item">
+                <strong>@Html.DisplayNameFor(model => model.NombreCompleto):</strong>
+                @Html.DisplayFor(model => model.NombreCompleto)
+            </div>
+
+            <div class="detalle-item">
+                <strong>@Html.DisplayNameFor(model => model.CorreoElectronico):</strong>
+                @Html.DisplayFor(model => model.CorreoElectronico)
+            </div>
+
+            <div class="detalle-item">
+                <strong>@Html.DisplayNameFor(model => model.NumeroContacto):</strong>
+                @Html.DisplayFor(model => model.NumeroContacto)
+            </div>
+
+            <div class="detalle-item">
+                <strong>@Html.DisplayNameFor(model => model.Servicios):</strong>
+                @Html.DisplayFor(model => model.Servicios)
+            </div>
+
+            <div class="detalle-item">
+                <strong>@Html.DisplayNameFor(model => model.FechaRegistro):</strong>
+                @Html.DisplayFor(model => model.FechaRegistro)
+            </div>
         </div>
 
-        <div class="detalle-item">
-            <strong>@Html.DisplayNameFor(model => model.CorreoElectronico):</strong>
-            @Html.DisplayFor(model => model.CorreoElectronico)
+        <!-- Botones -->
+        <div class="botones">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning boton-editar">Editar</a>
+            <a asp-action="Index" class="btn btn-success boton-atras">Atrás</a>
         </div>
-
-        <div class="detalle-item">
-            <strong>@Html.DisplayNameFor(model => model.NumeroContacto):</strong>
-            @Html.DisplayFor(model => model.NumeroContacto)
-        </div>
-
-        <div class="detalle-item">
-            <strong>@Html.DisplayNameFor(model => model.Servicios):</strong>
-            @Html.DisplayFor(model => model.Servicios)
-        </div>
-
-        <div class="detalle-item">
-            <strong>@Html.DisplayNameFor(model => model.FechaRegistro):</strong>
-            @Html.DisplayFor(model => model.FechaRegistro)
-        </div>
-    </div>
-
-    <!-- Botones -->
-    <div class="botones">
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning boton-editar">Editar</a>
-        <a asp-action="Index" class="btn btn-success boton-atras">Atrás</a>
     </div>
 </body>
 
@@ -49,23 +49,24 @@
         max-width: 600px;
         margin: auto;
         padding: 20px;
-        background-color: #f5d1c8;
+        background-color: #E8F5E9; /* Verde suave claro */
         border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .detalle-item {
-        background-color: #ffe6e1;
+        background-color: #FFFDE7; /* Amarillo suave */
         padding: 10px;
         margin: 10px 0;
         border-radius: 6px;
-        border: 1px solid #e0bfb7;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        border: 1px solid #FBC02D;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-        .detalle-item strong {
-            font-weight: bold;
-            color: #333;
-        }
+    .detalle-item strong {
+        font-weight: bold;
+        color: #333;
+    }
 
     .botones {
         text-align: center;
@@ -85,10 +86,10 @@
     }
 
     .boton-editar {
-        background-color: #FFD54F;
+        background-color: #FFB300; /* Amarillo dorado para el botón Editar */
     }
 
     .boton-atras {
-        background-color: #4CAF50;
+        background-color: #4CAF50; /* Verde suave para el botón Atrás */
     }
 </style>
