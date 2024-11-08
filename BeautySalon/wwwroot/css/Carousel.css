@@ -1,19 +1,54 @@
-﻿#myCarousel {
-    width: 80%; /* El carrusel ocupará todo el ancho de la pantalla */
-    margin: auto; /* Asegura que el carrusel esté centrado si se reduce */
+﻿/* Footer */
+.footer {
+    background-color: #D8BFD8; /* Color de fondo */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
 }
 
-.carousel-inner img {
-    width: 100%; /* Asegura que las imágenes ocupen todo el ancho del carrusel */
-    height: 300px; /* Ajusta la altura de las imágenes (puedes cambiar este valor) */
-    object-fit: cover; /* Asegura que las imágenes se adapten bien sin deformarse */
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.carousel-caption h1, .carousel-caption p {
-    font-size: 2rem; /* Tamaño del texto adaptado */
+.footer-logo {
+    max-width: 200px;
+    margin-bottom: 10px;
 }
 
-.btn-lg {
-    padding: 0.75rem 1.5rem; /* Ajusta el tamaño del botón */
-    font-size: 1.25rem;
+.footer-content p {
+    margin: 5px 0;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+    .social-icons a {
+        color: white;
+        font-size: 20px;
+        margin: 0 10px;
+        text-decoration: none;
+    }
+
+        .social-icons a:hover {
+            color: #d4b3ff; /* Cambia el color al pasar el mouse */
+        }
+
+.scroll-up {
+    display: inline-block;
+    margin-top: 15px;
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+    .scroll-up:hover {
+        color: #d4b3ff;
+    }
+
+.footer-bottom-text {
+    margin-top: 20px;
+    font-size: 14px;
 }

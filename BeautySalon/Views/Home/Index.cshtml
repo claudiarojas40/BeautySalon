@@ -41,45 +41,6 @@
 
     <main>
 
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="~/Imagenes/uñitas.jpeg" class=d-block w-100" alt="Imagen de spa">
-                    <div class="container">
-                        <div class="carousel-caption text-start">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Imagenes/caroosel.jpg" class="d-block w-100" alt="Imagen de spa">
-                    <div class="container">
-                        <div class="carousel-caption">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="~/Imagenes/brochas.jpg" class="d-block w-100" alt="Imagen de spa">
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
         <div class="container marketing">
 
             <!-- Three columns of text below the carousel -->
@@ -106,19 +67,22 @@
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
             <!-- START THE FEATURETTES -->
-
             <hr class="featurette-divider">
 
             <div class="row featurette">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">Peinado profesional<span class="text-muted"></span></h2>
+                    <h2 class="featurette-heading">Haz tu reservacion<span class="text-muted"></span></h2>
                     <p class="lead">
-                        En Beauty Salon, creamos peinados que se adaptan a tu estilo y personalidad. Ya sea para una ocasión especial o un cambio de look, te ayudamos a lucir espectacular con un toque elegante y sofisticado.
-                        Reserva tu cita hoy y deja que nuestro equipo de expertos resalte lo mejor de ti.
+                      Somos personas capacitadas para realizar un buen trabajo.
                     </p>
+                    <div style="display: flex; gap: 10px;">
+                        <a href="/Citas/Create" class="btn" style="background-color: blue; color: white;">Agendar Citas</a>
+                        <a href="/Catalogo/Index" class="btn" style="background-color: blue; color: white;">Ver Catálogo</a>
+                    </div>
+
                 </div>
                 <div class="col-md-5">
-                    <img src="~/Imagenes/Peiinado.jpeg" width="400" height="500" alt="Descripción de la imagen">
+                    <img src="~/Imagenes/nossssee.webp" width="400" height="400" alt="Descripción de la imagen">
 
                 </div>
             </div>
@@ -168,6 +132,31 @@
         <!-- FOOTER -->
 
     </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+          <h1 style="font-family: 'Playfair Display', serif; font-weight: bold; color: #000; font-size: 3em; text-align: center;">BEAUTY SALON</h1>
+            <p>El estilo de tu belleza desde 2024</p>
+            <p>📍 Dirección:Izalco, #123, Sonsonate, El Salvador</p>
+            <p>📞 Teléfono: 7630-8849 &nbsp; | &nbsp; ✉️ Email: beautysalon@gmail.com</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/VogueUnisex" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.tiktok.com/tu_usuario" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/ady_riveraa" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/61601362" target="_blank" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+
+            <a href="#" class="scroll-up"><i class="fas fa-chevron-up"></i></a>
+        </div>
+        </footer>
 
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
