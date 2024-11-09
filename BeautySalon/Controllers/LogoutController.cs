@@ -13,4 +13,8 @@ public class LogoutController : Controller
         // Redirige al usuario a la página de inicio de sesión o de inicio
         return RedirectToAction("Login", "Usuario");  // Puedes cambiar "Login" a la acción que prefieras
     }
+    public IActionResult ConfirmLogout()
+    {
+        return View();
+    }
 }

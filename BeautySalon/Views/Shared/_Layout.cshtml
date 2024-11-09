@@ -51,9 +51,10 @@
                 </form>
 
                 <!-- Formulario para cerrar sesión -->
-                <form class="d-flex ms-2" action="@Url.Action("Logout", "Usuario")" method="post">
-                    <button class="btn btn-custom" href="@Url.Action("Index", "Logout")">Cerrar sesión</button>
+                <form class="d-flex ms-2" action="@Url.Action("Logoutt", "Usuario")" method="post">
+                    <a class="btn btn-custom" href="@Url.Action("ConfirmLogout", "Logout")">Cerrar sesión</a>
                 </form>
+
             </div>
         </nav>
     </header>
