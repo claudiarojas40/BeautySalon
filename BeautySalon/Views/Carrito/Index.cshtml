@@ -1,0 +1,53 @@
+﻿@model List<CarritoItem>
+
+<h2>Carrito de Compras</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Producto.Nombre</td>
+                    <td>
+                        <form asp-action="ActualizarCantidad" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@item.Producto.Id" />
+                            <input type="number" name="cantidad" value="@item.Cantidad" min="1" />
+                            <button type="submit" class="btn btn-primary btn-sm">Actualizar</button>
+                        </form>
+                    </td>
+                    
+                    <td>
+                        <form asp-action="EliminarDelCarrito" method="post" style="display:inline;">
+                            <input type="hidden" name="id" value="@item.Producto.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"><strong>Total</strong></td>
+                <td colspan="2">
+                    
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <a asp-controller="Carrito" asp-action="Checkout" class="btn btn-success">Proceder al Pago</a>
+}
+else
+{
+    <p>Tu carrito está vacío.</p>
+}
