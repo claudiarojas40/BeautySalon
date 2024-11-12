@@ -150,3 +150,25 @@ input, select, textarea {
             background-color: #b6ffff;
             transform: scale(1.05);
         }
+
+<style >
+#searchResults {
+    border: 1px solid #ddd;
+    background-color: white;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 10;
+    width: 200px;
+}
+
+.product-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+    .product-item:hover {
+        background-color: #f0f0f0;
+    }
+
+</style >

@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<BeautySalon.Models.DetalleVenta>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Detalle de Venta";
 }
+
 @if (TempData["ErrorMessage"] != null)
 {
     <div id="errorMessage" class="alert alert-danger" role="alert">
@@ -11,7 +12,6 @@
     </div>
 
     <script>
-        // Espera 5 segundos (5000 ms) y luego oculta el mensaje
         setTimeout(function () {
             var messageDiv = document.getElementById("errorMessage");
             if (messageDiv) {
@@ -20,62 +20,152 @@
         }, 5000);
     </script>
 }
-<body style="background-color:#F5F5F5;">
-</body>
+
 <head>
     <link rel="stylesheet" href="~/css/Crud.css" />
+    <style>
+
+        h1 {
+            text-align: center;
+            color: #D8BFD8;
+            font-weight: bold;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+            .input-group label {
+                margin-right: 10px;
+            }
+
+        .btn-search, .btn-add {
+            background-color: #D8BFD8;
+            color: white;
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .totals-container {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+            .totals-container div {
+                margin-bottom: 5px;
+            }
+    </style>
 </head>
-<h1>DETALLE DE VENTA</h1>
 
-<p>
-    <a href="/DetalleVenta/Create" class="btn" style="background-color: #D8BFD8; color: white;">Crear Detalle</a>
+<body class="venta-container">
+    <h1>Venta</h1>
 
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Suma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cantidad)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdProductoNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdVentaNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Suma)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdProductoNavigation.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdVentaNavigation.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <!-- Información de Venta -->
+    <div class="input-group">
+        <label>Fecha:</label>
+        <input type="date" />
+        <label>Nombre:</label>
+        <input type="text" />
+        <label>Dirección:</label>
+        <input type="text" />
+    </div>
+
+    <div class="input-group">
+        <label>Buscar producto:</label>
+        <input type="text" id="productSearch" placeholder="Ingrese nombre del producto" />
+        <button class="btn-search" onclick="searchProduct()">Buscar</button>
+        <div id="searchResults" style="position: relative;"></div> <!-- Resultados de búsqueda -->
+    </div>
+
+    <!-- Botón para agregar al detalle -->
+    <div class="input-group">
+        <button class="btn-add">+</button>
+    </div>
+
+    <!-- Tabla de Detalle de Venta -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cantidad</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Suma</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IdProductoNavigation.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Suma)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Totales -->
+    <div class="totals-container">
+        <div>Descuento: <input type="text" value="0" /></div>
+        <div>IVA: <input type="text" value="0" /></div>
+        <div>Total a Pagar: <input type="text" value="0" /></div>
+        <button class="btn-add">Procesar</button>
+    </div>
+
+    <script>
+        function searchProduct() {
+            const searchTerm = document.getElementById("productSearch").value;
+
+            if (searchTerm.length > 0) {
+                fetch(`/ControllerName/SearchProducts?searchTerm=${searchTerm}`)
+                    .then(response => response.json())
+                    .then(products => {
+                        let resultsDiv = document.getElementById("searchResults");
+                        resultsDiv.innerHTML = "";
+
+                        products.forEach(product => {
+                            let productItem = document.createElement("div");
+                            productItem.className = "product-item";
+                            productItem.textContent = `${product.Nombre} - $${product.Precio}`;
+                            productItem.onclick = () => addToDetail(product);
+                            resultsDiv.appendChild(productItem);
+                        });
+                    });
+            }
+        }
+
+        function addToDetail(product) {
+            let cantidad = 1;
+            let suma = cantidad * product.Precio;
+
+            let newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td><input type="number" value="${cantidad}" onchange="updateSuma(this, ${product.Precio})" /></td>
+                <td>${product.Nombre}</td>
+                <td>${product.Precio}</td>
+                <td class="suma-cell">${suma.toFixed(2)}</td>
+            `;
+
+            document.getElementById("ventaDetalle").appendChild(newRow);
+
+            document.getElementById("searchResults").innerHTML = "";
+            document.getElementById("productSearch").value = "";
+        }
+
+        function updateSuma(cantidadInput, precio) {
+            let cantidad = parseInt(cantidadInput.value);
+            let suma = cantidad * precio;
+            let sumaCell = cantidadInput.parentElement.nextElementSibling.nextElementSibling.nextElementSibling;
+
+            sumaCell.textContent = suma.toFixed(2);
+        }
+    </script>
+
+
+</body>
