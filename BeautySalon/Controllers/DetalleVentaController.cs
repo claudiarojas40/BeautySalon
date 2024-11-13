@@ -175,5 +175,44 @@ namespace BeautySalon.Controllers
         {
             return _context.DetalleVenta.Any(e => e.Id == id);
         }
+        public async Task<IActionResult> DetalleVenta(int idVenta)
+        {
+            var venta = await _context.Venta
+                .Include(v => v.DetalleVenta)
+                .ThenInclude(dv => dv.IdProducto)
+                .FirstOrDefaultAsync(v => v.Id == idVenta);
+
+            if (venta == null)
+            {
+                return NotFound();
+            }
+
+            return View(venta);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AgregarProducto(int idProducto)
+        {
+            var producto = await _context.Producto.FindAsync(idProducto);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+
+            var precioUnitario = producto.PrecioUnitario ?? 0; // Asigna 0 si PrecioUnitario es null
+
+            var detalleVenta = new DetalleVenta
+            {
+                Id = producto.Id,
+                Cantidad = 1,
+                Precio = precioUnitario,
+                Suma = precioUnitario // Calcula el subtotal
+            };
+
+            _context.DetalleVenta.Add(detalleVenta);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("DetalleVenta");
+        }
+
     }
 }

@@ -19,7 +19,15 @@ namespace BeautySalon.Controllers
         {
             _context = context;
         }
+        // Acción de búsqueda
+        public async Task<IActionResult> BuscarProducto(string termino)
+        {
+            var productos = await _context.Producto
+                .Where(p => p.Nombre.Contains(termino))
+                .ToListAsync();
 
+            return Json(productos);
+        }
         // GET: Venta
         public async Task<IActionResult> Index()
         {
@@ -123,6 +131,12 @@ namespace BeautySalon.Controllers
             return View(venta);
         }
 
+        private bool VentaExists(int id)
+        {
+            return _context.Venta.Any(e => e.Id == id);
+        }
+
+
         // GET: Venta/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -163,11 +177,6 @@ namespace BeautySalon.Controllers
                 }
             }
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool VentaExists(int id)
-        {
-            return _context.Venta.Any(e => e.Id == id);
         }
     }
 }

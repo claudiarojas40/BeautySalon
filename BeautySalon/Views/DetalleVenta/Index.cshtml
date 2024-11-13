@@ -24,7 +24,6 @@
 <head>
     <link rel="stylesheet" href="~/css/Crud.css" />
     <style>
-
         h1 {
             text-align: center;
             color: #D8BFD8;
@@ -75,20 +74,15 @@
         <input type="text" />
     </div>
 
-    <div class="input-group">
-        <label>Buscar producto:</label>
-        <input type="text" id="productSearch" placeholder="Ingrese nombre del producto" />
-        <button class="btn-search" onclick="searchProduct()">Buscar</button>
-        <div id="searchResults" style="position: relative;"></div> <!-- Resultados de búsqueda -->
-    </div>
+    <input type="text" id="terminoBusqueda" placeholder="Buscar producto">
+    <button onclick="buscarProducto()">Buscar</button>
 
-    <!-- Botón para agregar al detalle -->
-    <div class="input-group">
-        <button class="btn-add">+</button>
-    </div>
+    <table id="resultadosBusqueda">
+        <!-- Aquí se mostrarán los productos encontrados -->
+    </table>
 
-    <!-- Tabla de Detalle de Venta -->
-    <table class="table">
+    <h3>Productos en la Venta</h3>
+    <table>
         <thead>
             <tr>
                 <th>Cantidad</th>
@@ -98,74 +92,55 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var detalle in Model)
             {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
-                    <td>@Html.DisplayFor(modelItem => item.IdProductoNavigation.Nombre)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Precio)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Suma)</td>
+                    <td>@detalle.Cantidad</td>
+                    <td>@detalle.IdProductoNavigation?.Nombre</td> <!-- Accedemos al nombre del producto -->
+                    <td>@detalle.Precio</td>
+                    <td>@detalle.Suma</td>
                 </tr>
             }
         </tbody>
     </table>
 
+
     <!-- Totales -->
     <div class="totals-container">
-        <div>Descuento: <input type="text" value="0" /></div>
-        <div>IVA: <input type="text" value="0" /></div>
-        <div>Total a Pagar: <input type="text" value="0" /></div>
+        <div>Descuento: <input type="text" name="descuento" value="0" oninput="calculateTotals()" /></div>
+        <div>IVA: <input type="text" name="IVA" readonly value="0" /></div>
+        <div>Total a Pagar: <input type="text" name="Total" readonly value="0" /></div>
         <button class="btn-add">Procesar</button>
     </div>
 
     <script>
-        function searchProduct() {
-            const searchTerm = document.getElementById("productSearch").value;
+        function buscarProducto() {
+            var termino = document.getElementById("terminoBusqueda").value;
 
-            if (searchTerm.length > 0) {
-                fetch(`/ControllerName/SearchProducts?searchTerm=${searchTerm}`)
-                    .then(response => response.json())
-                    .then(products => {
-                        let resultsDiv = document.getElementById("searchResults");
-                        resultsDiv.innerHTML = "";
+            $.ajax({
+                url: '/Venta/BuscarProducto',
+                type: 'GET',
+                data: { termino: termino },
+                success: function (productos) {
+                    var resultados = document.getElementById("resultadosBusqueda");
+                    resultados.innerHTML = "";
 
-                        products.forEach(product => {
-                            let productItem = document.createElement("div");
-                            productItem.className = "product-item";
-                            productItem.textContent = `${product.Nombre} - $${product.Precio}`;
-                            productItem.onclick = () => addToDetail(product);
-                            resultsDiv.appendChild(productItem);
-                        });
+                    productos.forEach(producto => {
+                        resultados.innerHTML += `
+                                <tr>
+                                    <td>${producto.nombre}</td>
+                                    <td>${producto.precio}</td>
+                                    <td>
+                                        <button onclick="agregarProducto(${producto.id})">Agregar</button>
+                                    </td>
+                                </tr>`;
                     });
-            }
-        }
-
-        function addToDetail(product) {
-            let cantidad = 1;
-            let suma = cantidad * product.Precio;
-
-            let newRow = document.createElement("tr");
-            newRow.innerHTML = `
-                <td><input type="number" value="${cantidad}" onchange="updateSuma(this, ${product.Precio})" /></td>
-                <td>${product.Nombre}</td>
-                <td>${product.Precio}</td>
-                <td class="suma-cell">${suma.toFixed(2)}</td>
-            `;
-
-            document.getElementById("ventaDetalle").appendChild(newRow);
-
-            document.getElementById("searchResults").innerHTML = "";
-            document.getElementById("productSearch").value = "";
-        }
-
-        function updateSuma(cantidadInput, precio) {
-            let cantidad = parseInt(cantidadInput.value);
-            let suma = cantidad * precio;
-            let sumaCell = cantidadInput.parentElement.nextElementSibling.nextElementSibling.nextElementSibling;
-
-            sumaCell.textContent = suma.toFixed(2);
+                }
+            });
         }
     </script>
+
+
 
 
 </body>
