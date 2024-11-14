@@ -194,13 +194,13 @@ namespace BeautySalon.Controllers
 
         // Acción GET para mostrar la vista de detalle de venta
         [HttpGet]
-        public IActionResult Index() // Cambié a Index ya que esta es la vista que estás intentando cargar
+        public IActionResult Index()
         {
-            // Enviar los productos disponibles al ViewBag
-            ViewBag.Producto = new SelectList(_context.Producto, "Id", "Nombre");
+            // Obtener productos de la base de datos y pasarlos a la vista
+            var productos = _context.Producto.ToList();
+            ViewBag.Producto = productos;
             return View();
         }
-
 
         // Acción POST para agregar un producto a la venta
         [HttpPost]

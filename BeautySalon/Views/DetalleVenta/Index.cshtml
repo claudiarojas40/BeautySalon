@@ -27,16 +27,28 @@
 
 <h1>Detalle de Venta</h1>
 
+<!-- Información de Venta -->
 <div class="input-group">
-    <label for="terminoBusqueda" class="control-label">Buscar producto:</label>
-    <select id="terminoBusqueda" class="form-control" onchange="mostrarProducto()">
-        <option value="">Seleccione un producto</option>
-        @foreach (var producto in ViewBag.Producto)
-        {
-            <option value="@producto.Value">@producto.Text</option>
-        }
-    </select>
+    <label>Fecha:</label>
+    <input type="date" />
+    <label>Nombre:</label>
+    <input type="text" />
+    <label>Dirección:</label>
+    <input type="text" />
 </div>
+
+<select id="terminoBusqueda" class="form-control">
+    <option value="">Seleccione un producto</option>
+    @foreach (var producto in ViewBag.Producto)
+    {
+        <option value="@producto.Id" data-precio="@producto.PrecioUnitario">
+            @producto.Nombre
+        </option>
+    }
+</select>
+<button onclick="agregarProducto()" class="btn btn-primary">+</button>
+
+
 
 <table id="resultadosBusqueda" class="table">
     <thead>
@@ -52,40 +64,72 @@
     </tbody>
 </table>
 
-<!-- Totales -->
-<div class="totals-container">
-    <div>Descuento: <input type="text" name="descuento" value="0" oninput="calculateTotals()" /></div>
-    <div>IVA: <input type="text" name="IVA" readonly value="0" /></div>
-    <div>Total a Pagar: <input type="text" name="Total" readonly value="0" /></div>
-    <button class="btn-add">Procesar</button>
-</div>
+<div>Descuento: <input type="text" name="descuento" value="0" oninput="calculateTotals()" /></div>
+<div>IVA: <input type="text" name="IVA" readonly value="0" /></div>
+<div>Total a Pagar: <input type="text" name="Total" readonly value="0" /></div>
+<button class="btn-add">Procesar</button>
 
 <script>
-    async function mostrarProducto() {
-        var idProducto = document.getElementById("terminoBusqueda").value;
+    function agregarProducto() {
+        var selectProducto = document.getElementById("terminoBusqueda");
+        var idProducto = selectProducto.value;
+        var nombreProducto = selectProducto.options[selectProducto.selectedIndex].text;
+        var precioProducto = parseFloat(selectProducto.options[selectProducto.selectedIndex].getAttribute("data-precio"));
 
-        if (idProducto === "") {
-            limpiarTabla();
+        if (!idProducto) {
+            alert("Por favor, seleccione un producto.");
             return;
         }
 
-        const response = await fetch(`/DetalleVenta/BuscarProducto?termino=${idProducto}`);
-        const productos = await response.json();
-
-        limpiarTabla();
+        // Añadir el producto a la tabla
         var tbody = document.getElementById("resultadosBusqueda").getElementsByTagName("tbody")[0];
+        var row = tbody.insertRow();
 
-        productos.forEach(producto => {
-            var row = tbody.insertRow();
-            row.insertCell(0).innerText = 1; // Cantidad fija en 1 por ahora
-            row.insertCell(1).innerText = producto.Nombre;
-            row.insertCell(2).innerText = producto.PrecioUnitario;
-            row.insertCell(3).innerText = producto.PrecioUnitario; // Suma inicial basada en precio unitario
-        });
+        // Columnas: Cantidad, Descripción, Precio, Suma
+        var cantidadCell = row.insertCell(0);
+        var descripcionCell = row.insertCell(1);
+        var precioCell = row.insertCell(2);
+        var sumaCell = row.insertCell(3);
+
+        cantidadCell.innerHTML = '<input type="number" value="1" min="1" onchange="actualizarSuma(this)" />';
+        descripcionCell.innerText = nombreProducto;
+        precioCell.innerText = precioProducto.toFixed(2);
+        sumaCell.innerText = precioProducto.toFixed(2);
+
+        // Recalcular los totales
+        calculateTotals();
     }
 
-    function limpiarTabla() {
+    function actualizarSuma(input) {
+        var cantidad = parseFloat(input.value);
+        var precioUnitario = parseFloat(input.closest("tr").cells[2].innerText);
+        var sumaCell = input.closest("tr").cells[3];
+
+        // Actualizar la suma en la fila actual
+        sumaCell.innerText = (cantidad * precioUnitario).toFixed(2);
+
+        // Recalcular los totales
+        calculateTotals();
+    }
+
+    function calculateTotals() {
+        var subtotal = 0;
+        var ivaRate = 0.13; // 13% de IVA, ajusta según tus necesidades
+        var descuento = parseFloat(document.querySelector("input[name='descuento']").value) || 0;
+
+        // Sumar todas las cantidades en la columna de Suma
         var tbody = document.getElementById("resultadosBusqueda").getElementsByTagName("tbody")[0];
-        tbody.innerHTML = "";
+        Array.from(tbody.rows).forEach(row => {
+            var suma = parseFloat(row.cells[3].innerText);
+            subtotal += suma;
+        });
+
+        // Cálculos
+        var iva = subtotal * ivaRate;
+        var total = subtotal + iva - descuento;
+
+        // Mostrar los valores en los campos correspondientes
+        document.querySelector("input[name='IVA']").value = iva.toFixed(2);
+        document.querySelector("input[name='Total']").value = total.toFixed(2);
     }
 </script>
