@@ -21,11 +21,11 @@ namespace BeautySalon.Controllers
         }
 
         // GET: DetalleVenta
-        public async Task<IActionResult> Index()
-        {
-            var bDContext = _context.DetalleVenta.Include(d => d.IdProductoNavigation).Include(d => d.IdVentaNavigation);
-            return View(await bDContext.ToListAsync());
-        }
+        //public async Task<IActionResult> Index()
+       // {
+           // var bDContext = _context.DetalleVenta.Include(d => d.IdProductoNavigation).Include(d => d.IdVentaNavigation);
+          //  return View(await bDContext.ToListAsync());
+        //}
 
         // GET: DetalleVenta/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -189,23 +189,38 @@ namespace BeautySalon.Controllers
 
             return View(venta);
         }
+
+
+
+        // Acción GET para mostrar la vista de detalle de venta
+        [HttpGet]
+        public IActionResult Index() // Cambié a Index ya que esta es la vista que estás intentando cargar
+        {
+            // Enviar los productos disponibles al ViewBag
+            ViewBag.Producto = new SelectList(_context.Producto, "Id", "Nombre");
+            return View();
+        }
+
+
+        // Acción POST para agregar un producto a la venta
         [HttpPost]
         public async Task<IActionResult> AgregarProducto(int idProducto)
         {
             var producto = await _context.Producto.FindAsync(idProducto);
             if (producto == null)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "Producto no encontrado.";
+                return RedirectToAction("DetalleVenta");
             }
 
-            var precioUnitario = producto.PrecioUnitario ?? 0; // Asigna 0 si PrecioUnitario es null
+            var precioUnitario = producto.PrecioUnitario ?? 0;
 
             var detalleVenta = new DetalleVenta
             {
-                Id = producto.Id,
+                IdProducto = producto.Id, // Cambié a IdProducto para hacer clara la relación con Producto
                 Cantidad = 1,
                 Precio = precioUnitario,
-                Suma = precioUnitario // Calcula el subtotal
+                Suma = precioUnitario
             };
 
             _context.DetalleVenta.Add(detalleVenta);
@@ -214,5 +229,20 @@ namespace BeautySalon.Controllers
             return RedirectToAction("DetalleVenta");
         }
 
+        // Acción para buscar productos según el término de búsqueda
+        public async Task<IActionResult> BuscarProducto(string termino)
+        {
+            var productos = await _context.Producto
+                .Where(p => p.Nombre.Contains(termino))
+                .Select(p => new
+                {
+                    p.Id,
+                    p.Nombre,
+                    p.PrecioUnitario
+                })
+                .ToListAsync();
+
+            return Json(productos);
+        }
     }
 }

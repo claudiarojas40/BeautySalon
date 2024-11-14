@@ -23,124 +23,69 @@
 
 <head>
     <link rel="stylesheet" href="~/css/Crud.css" />
-    <style>
-        h1 {
-            text-align: center;
-            color: #D8BFD8;
-            font-weight: bold;
-        }
-
-        .input-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-            .input-group label {
-                margin-right: 10px;
-            }
-
-        .btn-search, .btn-add {
-            background-color: #D8BFD8;
-            color: white;
-            margin-left: 10px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .totals-container {
-            margin-top: 20px;
-            text-align: right;
-        }
-
-            .totals-container div {
-                margin-bottom: 5px;
-            }
-    </style>
 </head>
 
-<body class="venta-container">
-    <h1>Venta</h1>
+<h1>Detalle de Venta</h1>
 
-    <!-- Información de Venta -->
-    <div class="input-group">
-        <label>Fecha:</label>
-        <input type="date" />
-        <label>Nombre:</label>
-        <input type="text" />
-        <label>Dirección:</label>
-        <input type="text" />
-    </div>
-
-    <input type="text" id="terminoBusqueda" placeholder="Buscar producto">
-    <button onclick="buscarProducto()">Buscar</button>
-
-    <table id="resultadosBusqueda">
-        <!-- Aquí se mostrarán los productos encontrados -->
-    </table>
-
-    <h3>Productos en la Venta</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Cantidad</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Suma</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var detalle in Model)
-            {
-                <tr>
-                    <td>@detalle.Cantidad</td>
-                    <td>@detalle.IdProductoNavigation?.Nombre</td> <!-- Accedemos al nombre del producto -->
-                    <td>@detalle.Precio</td>
-                    <td>@detalle.Suma</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-
-    <!-- Totales -->
-    <div class="totals-container">
-        <div>Descuento: <input type="text" name="descuento" value="0" oninput="calculateTotals()" /></div>
-        <div>IVA: <input type="text" name="IVA" readonly value="0" /></div>
-        <div>Total a Pagar: <input type="text" name="Total" readonly value="0" /></div>
-        <button class="btn-add">Procesar</button>
-    </div>
-
-    <script>
-        function buscarProducto() {
-            var termino = document.getElementById("terminoBusqueda").value;
-
-            $.ajax({
-                url: '/Venta/BuscarProducto',
-                type: 'GET',
-                data: { termino: termino },
-                success: function (productos) {
-                    var resultados = document.getElementById("resultadosBusqueda");
-                    resultados.innerHTML = "";
-
-                    productos.forEach(producto => {
-                        resultados.innerHTML += `
-                                <tr>
-                                    <td>${producto.nombre}</td>
-                                    <td>${producto.precio}</td>
-                                    <td>
-                                        <button onclick="agregarProducto(${producto.id})">Agregar</button>
-                                    </td>
-                                </tr>`;
-                    });
-                }
-            });
+<div class="input-group">
+    <label for="terminoBusqueda" class="control-label">Buscar producto:</label>
+    <select id="terminoBusqueda" class="form-control" onchange="mostrarProducto()">
+        <option value="">Seleccione un producto</option>
+        @foreach (var producto in ViewBag.Producto)
+        {
+            <option value="@producto.Value">@producto.Text</option>
         }
-    </script>
+    </select>
+</div>
 
+<table id="resultadosBusqueda" class="table">
+    <thead>
+        <tr>
+            <th>Cantidad</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Suma</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Aquí se mostrarán los productos seleccionados -->
+    </tbody>
+</table>
 
+<!-- Totales -->
+<div class="totals-container">
+    <div>Descuento: <input type="text" name="descuento" value="0" oninput="calculateTotals()" /></div>
+    <div>IVA: <input type="text" name="IVA" readonly value="0" /></div>
+    <div>Total a Pagar: <input type="text" name="Total" readonly value="0" /></div>
+    <button class="btn-add">Procesar</button>
+</div>
 
+<script>
+    async function mostrarProducto() {
+        var idProducto = document.getElementById("terminoBusqueda").value;
 
-</body>
+        if (idProducto === "") {
+            limpiarTabla();
+            return;
+        }
+
+        const response = await fetch(`/DetalleVenta/BuscarProducto?termino=${idProducto}`);
+        const productos = await response.json();
+
+        limpiarTabla();
+        var tbody = document.getElementById("resultadosBusqueda").getElementsByTagName("tbody")[0];
+
+        productos.forEach(producto => {
+            var row = tbody.insertRow();
+            row.insertCell(0).innerText = 1; // Cantidad fija en 1 por ahora
+            row.insertCell(1).innerText = producto.Nombre;
+            row.insertCell(2).innerText = producto.PrecioUnitario;
+            row.insertCell(3).innerText = producto.PrecioUnitario; // Suma inicial basada en precio unitario
+        });
+    }
+
+    function limpiarTabla() {
+        var tbody = document.getElementById("resultadosBusqueda").getElementsByTagName("tbody")[0];
+        tbody.innerHTML = "";
+    }
+</script>
