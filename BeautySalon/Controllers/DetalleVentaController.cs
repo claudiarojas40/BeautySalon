@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BeautySalon.Models;
@@ -244,5 +240,33 @@ namespace BeautySalon.Controllers
 
             return Json(productos);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ProcesarVenta(VentaViewModel model)
+        {
+            // Crear una nueva instancia de la entidad Venta
+            var venta = new Venta
+            {
+                Fecha = model.Fecha,
+                Nombre = model.NombreCliente,
+                Direccion = model.DireccionCliente,
+                Total = model.Total,
+                TotalPagar = model.Total, // Ajusta según el modelo si es necesario
+                DetalleVenta = model.DetalleVenta.Select(d => new DetalleVenta
+                {
+                    Precio = d.PrecioUnitario, // Mapea PrecioUnitario del ViewModel a Precio del modelo
+                    Suma = d.Subtotal,         // Mapea Subtotal del ViewModel a Suma del modelo
+                    Cantidad = d.Cantidad,
+                    IdProducto = d.IdProducto  // Asume que tienes un campo IdProducto en el ViewModel
+                }).ToList()
+            };
+
+            // Guardar la venta en la base de datos
+            _context.Venta.Add(venta);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

@@ -4,132 +4,156 @@
     ViewData["Title"] = "Detalle de Venta";
 }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div id="errorMessage" class="alert alert-danger" role="alert">
-        <span style="color: red; font-size: 20px; font-weight: bold;">&times;</span>
-        @TempData["ErrorMessage"]
-    </div>
-
-    <script>
-        setTimeout(function () {
-            var messageDiv = document.getElementById("errorMessage");
-            if (messageDiv) {
-                messageDiv.style.display = "none";
-            }
-        }, 5000);
-    </script>
-}
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/Crud.css" />
+    <title>@ViewData["Title"]</title>
 </head>
+<body>
+    <h1>Detalle de Venta</h1>
 
-<h1>Detalle de Venta</h1>
+    <!-- Formulario para procesar la venta -->
+    <form action="/DetalleVenta/ProcesarVenta" method="post">
+        <input type="hidden" id="Fecha" name="Fecha" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <div class="form-group">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" id="Nombre" name="Nombre" class="form-control" required />
+        </div>
+        <div class="form-group">
+            <label for="Direccion">Dirección:</label>
+            <input type="text" id="Direccion" name="Direccion" class="form-control" required />
+        </div>
 
-<!-- Información de Venta -->
-<div class="input-group">
-    <label>Fecha:</label>
-    <input type="date" />
-    <label>Nombre:</label>
-    <input type="text" />
-    <label>Dirección:</label>
-    <input type="text" />
-</div>
+        <!-- Campo oculto para los detalles -->
+        <input type="hidden" id="Detalles" name="DetallesJson" />
 
-<select id="terminoBusqueda" class="form-control">
-    <option value="">Seleccione un producto</option>
-    @foreach (var producto in ViewBag.Producto)
-    {
-        <option value="@producto.Id" data-precio="@producto.PrecioUnitario">
-            @producto.Nombre
-        </option>
-    }
-</select>
-<button onclick="agregarProducto()" class="btn btn-primary">+</button>
+        <!-- Selección de productos -->
+        <div class="form-group">
+            <label for="terminoBusqueda">Seleccione un producto:</label>
+            <select id="terminoBusqueda" class="form-control">
+                <option value="">Seleccione un producto</option>
+                @foreach (var producto in ViewBag.Producto)
+                {
+                    <option value="@producto.Id" data-precio="@producto.PrecioUnitario">
+                        @producto.Nombre
+                    </option>
+                }
+            </select>
+            <button type="button" onclick="agregarProducto()" class="btn btn-primary mt-2">Agregar Producto</button>
+        </div>
 
+        <!-- Tabla de productos -->
+        <table id="resultadosBusqueda" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Descripción</th>
+                    <th>Precio Unitario</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se agregarán los productos seleccionados -->
+            </tbody>
+        </table>
 
+        <!-- Totales -->
+        <div class="form-group">
+            <label for="descuento">Descuento:</label>
+            <input type="number" id="descuento" name="descuento" value="0" class="form-control" oninput="calculateTotals()" />
+        </div>
+        <div class="form-group">
+            <label for="IVA">IVA:</label>
+            <input type="text" id="IVA" name="IVA" readonly class="form-control" value="0" />
+        </div>
+        <div class="form-group">
+            <label for="Total">Total a Pagar:</label>
+            <input type="text" id="Total" name="Total" readonly class="form-control" value="0" />
+        </div>
+        <button onclick="procesarVenta()" class="btn-add">Procesar</button>
+    </form>
 
-<table id="resultadosBusqueda" class="table">
-    <thead>
-        <tr>
-            <th>Cantidad</th>
-            <th>Descripción</th>
-            <th>Precio</th>
-            <th>Suma</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Aquí se mostrarán los productos seleccionados -->
-    </tbody>
-</table>
+    <!-- Script de funcionalidad -->
+    <script>
+        function agregarProducto() {
+            const selectProducto = document.getElementById("terminoBusqueda");
+            const idProducto = selectProducto.value;
+            const nombreProducto = selectProducto.options[selectProducto.selectedIndex].text;
+            const precioProducto = parseFloat(selectProducto.options[selectProducto.selectedIndex].getAttribute("data-precio"));
 
-<div>Descuento: <input type="text" name="descuento" value="0" oninput="calculateTotals()" /></div>
-<div>IVA: <input type="text" name="IVA" readonly value="0" /></div>
-<div>Total a Pagar: <input type="text" name="Total" readonly value="0" /></div>
-<button class="btn-add">Procesar</button>
+            if (!idProducto) {
+                alert("Por favor, seleccione un producto.");
+                return;
+            }
 
-<script>
-    function agregarProducto() {
-        var selectProducto = document.getElementById("terminoBusqueda");
-        var idProducto = selectProducto.value;
-        var nombreProducto = selectProducto.options[selectProducto.selectedIndex].text;
-        var precioProducto = parseFloat(selectProducto.options[selectProducto.selectedIndex].getAttribute("data-precio"));
+            // Añadir producto a la tabla
+            const tbody = document.getElementById("resultadosBusqueda").getElementsByTagName("tbody")[0];
+            const row = tbody.insertRow();
 
-        if (!idProducto) {
-            alert("Por favor, seleccione un producto.");
-            return;
+            // Crear columnas: Cantidad, Descripción, Precio, Total, Acciones
+            row.innerHTML = `
+                                <td><input type="number" value="1" min="1" class="form-control" onchange="actualizarSuma(this)" /></td>
+                                <td data-id="${idProducto}">${nombreProducto}</td>
+                                <td>${precioProducto.toFixed(2)}</td>
+                                <td>${precioProducto.toFixed(2)}</td>
+                                <td><button type="button" class="btn btn-danger btn-sm" onclick="eliminarProducto(this)">Eliminar</button></td>
+                            `;
+
+            calculateTotals();
         }
 
-        // Añadir el producto a la tabla
-        var tbody = document.getElementById("resultadosBusqueda").getElementsByTagName("tbody")[0];
-        var row = tbody.insertRow();
+        function actualizarSuma(input) {
+            const cantidad = parseFloat(input.value);
+            const precioUnitario = parseFloat(input.closest("tr").cells[2].innerText);
+            const sumaCell = input.closest("tr").cells[3];
 
-        // Columnas: Cantidad, Descripción, Precio, Suma
-        var cantidadCell = row.insertCell(0);
-        var descripcionCell = row.insertCell(1);
-        var precioCell = row.insertCell(2);
-        var sumaCell = row.insertCell(3);
+            // Actualizar la suma en la fila actual
+            sumaCell.innerText = (cantidad * precioUnitario).toFixed(2);
 
-        cantidadCell.innerHTML = '<input type="number" value="1" min="1" onchange="actualizarSuma(this)" />';
-        descripcionCell.innerText = nombreProducto;
-        precioCell.innerText = precioProducto.toFixed(2);
-        sumaCell.innerText = precioProducto.toFixed(2);
+            calculateTotals();
+        }
 
-        // Recalcular los totales
-        calculateTotals();
-    }
+        function eliminarProducto(button) {
+            const row = button.closest("tr");
+            row.remove();
+            calculateTotals();
+        }
 
-    function actualizarSuma(input) {
-        var cantidad = parseFloat(input.value);
-        var precioUnitario = parseFloat(input.closest("tr").cells[2].innerText);
-        var sumaCell = input.closest("tr").cells[3];
+        function calculateTotals() {
+            let subtotal = 0;
+            const ivaRate = 0.13; // IVA 13%
+            const descuento = parseFloat(document.getElementById("descuento").value) || 0;
 
-        // Actualizar la suma en la fila actual
-        sumaCell.innerText = (cantidad * precioUnitario).toFixed(2);
+            // Sumar los totales de cada fila
+            const rows = document.querySelectorAll("#resultadosBusqueda tbody tr");
+            rows.forEach(row => {
+                const total = parseFloat(row.cells[3].innerText);
+                subtotal += total;
+            });
 
-        // Recalcular los totales
-        calculateTotals();
-    }
+            const iva = subtotal * ivaRate;
+            const total = subtotal + iva - descuento;
 
-    function calculateTotals() {
-        var subtotal = 0;
-        var ivaRate = 0.13; // 13% de IVA, ajusta según tus necesidades
-        var descuento = parseFloat(document.querySelector("input[name='descuento']").value) || 0;
+            // Mostrar resultados
+            document.getElementById("IVA").value = iva.toFixed(2);
+            document.getElementById("Total").value = total.toFixed(2);
+        }
 
-        // Sumar todas las cantidades en la columna de Suma
-        var tbody = document.getElementById("resultadosBusqueda").getElementsByTagName("tbody")[0];
-        Array.from(tbody.rows).forEach(row => {
-            var suma = parseFloat(row.cells[3].innerText);
-            subtotal += suma;
+        document.querySelector("form").addEventListener("submit", function () {
+            const detalles = [];
+            const rows = document.querySelectorAll("#resultadosBusqueda tbody tr");
+            rows.forEach(row => {
+                const cantidad = parseInt(row.cells[0].querySelector("input").value);
+                const idProducto = row.cells[1].getAttribute("data-id");
+                const precioUnitario = parseFloat(row.cells[2].innerText);
+                detalles.push({ IdProducto: idProducto, Cantidad: cantidad, PrecioUnitario: precioUnitario });
+            });
+            document.getElementById("Detalles").value = JSON.stringify(detalles);
         });
-
-        // Cálculos
-        var iva = subtotal * ivaRate;
-        var total = subtotal + iva - descuento;
-
-        // Mostrar los valores en los campos correspondientes
-        document.querySelector("input[name='IVA']").value = iva.toFixed(2);
-        document.querySelector("input[name='Total']").value = total.toFixed(2);
-    }
-</script>
+    </script>
+</body>
+</html>
