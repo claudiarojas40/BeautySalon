@@ -4,13 +4,13 @@
     ViewData["Title"] = "Detalles";
 }
 
-<body style="background-color:#F5F5F5;">
-    <h1>Detalle</h1>
+<body style="background-color:#FADAD1;">
+    <body/>
+    <h1>Detalles</h1>
 
     <div class="detalle">
-        <h4>Detalle de Venta</h4>
+        <h4>Detalle de la Venta</h4>
         <hr />
-
         <div class="detalle-item">
             <strong>@Html.DisplayNameFor(model => model.Precio):</strong>
             @Html.DisplayFor(model => model.Precio)
@@ -49,24 +49,23 @@
         max-width: 600px;
         margin: auto;
         padding: 20px;
-        background-color: #ecf0f1; /* Verde suave claro */
+        background-color: #f5d1c8;
         border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .detalle-item {
-        background-color: #FFFDE7; /* Amarillo suave */
+        background-color: #ffe6e1;
         padding: 10px;
         margin: 10px 0;
         border-radius: 6px;
-        border: 1px solid #D29BFD;
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e0bfb7;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .detalle-item strong {
-        font-weight: bold;
-        color: #333;
-    }
+        .detalle-item strong {
+            font-weight: bold;
+            color: #333;
+        }
 
     .botones {
         text-align: center;
@@ -86,10 +85,10 @@
     }
 
     .boton-editar {
-        background-color: #FF7043; /* Naranja suave para el botón Editar */
+        background-color: #FFD54F;
     }
 
     .boton-atras {
-        background-color: #66BB6A; /* Verde pastel suave para el botón Atrás */
+        background-color: #4CAF50;
     }
 </style>

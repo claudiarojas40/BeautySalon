@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+
 @if (TempData["ErrorMessage"] != null)
 {
     <div id="errorMessage" class="alert alert-danger" role="alert">
@@ -23,29 +24,40 @@
 
 <body style="background-color:#F5F5F5;">
 </body>
+
 <head>
     <link rel="stylesheet" href="~/css/Crud.css" />
 </head>
+
 <h1>PRODUCTO</h1>
 
 <p>
     <a href="/Producto/Create" class="btn" style="background-color: #D8BFD8; color: white;">Crear producto</a>
-
 </p>
+
+<!-- Contenedor para las cartas de productos -->
 <div class="container">
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
         @foreach (var item in Model)
         {
-            <div class="col-md-3 mb-4">
-                <div class="card h-100" style="width: 100%;">
-                    <img src="@item.Imagen" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Nombre</h5>
-                        <p class="card-text">@item.Marca @item.Descripcion @item.PrecioUnitario</p>
-                        <div class="btn-group btn-group-sm" role="group">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalles</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+            <div class="col">
+                <div class="card h-100" style="max-width: 300px; min-height: 350px;">
+                    <img src="@item.Imagen" class="card-img-top" alt="Imagen de @item.Nombre">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title" style="font-size: 1.1rem;">@item.Nombre</h5>
+
+                        <!-- Precio destacado -->
+                        <p style="font-size: 1rem; font-weight: bold; color: #4CAF50;">$@item.PrecioUnitario</p>
+
+                        <p class="card-text" style="font-size: 0.9rem;">@item.Marca @item.Descripcion</p>
+
+                        <!-- Botones pequeños y alineados -->
+                        <div class="mt-auto">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalles</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -53,6 +65,3 @@
         }
     </div>
 </div>
-
-
-
