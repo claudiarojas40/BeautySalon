@@ -50,6 +50,7 @@ namespace BeautySalon.Controllers
 
                 if (usuario != null)
                 {
+                    Global.GIdUsuario = usuario.Id;
                     // Autenticación exitosa, crear cookie de autenticación
                     var claims = new List<Claim>
                 {

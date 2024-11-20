@@ -15,12 +15,21 @@ namespace BeautySalon.Controllers
         {
             _context = context;
         }
+        [HttpPost]
+        public async Task<IActionResult> ProcesarVenta(Venta pVenta, List<DetalleVenta> pDetalleVentas)
+        {
+            pVenta.IdUsuario = Global.GIdUsuario;
+            _context.Add(pVenta);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+           
+        }
 
         // GET: DetalleVenta
         //public async Task<IActionResult> Index()
-       // {
-           // var bDContext = _context.DetalleVenta.Include(d => d.IdProductoNavigation).Include(d => d.IdVentaNavigation);
-          //  return View(await bDContext.ToListAsync());
+        // {
+        // var bDContext = _context.DetalleVenta.Include(d => d.IdProductoNavigation).Include(d => d.IdVentaNavigation);
+        //  return View(await bDContext.ToListAsync());
         //}
 
         // GET: DetalleVenta/Details/5
@@ -241,32 +250,32 @@ namespace BeautySalon.Controllers
             return Json(productos);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ProcesarVenta(VentaViewModel model)
-        {
-            // Crear una nueva instancia de la entidad Venta
-            var venta = new Venta
-            {
-                Fecha = model.Fecha,
-                Nombre = model.NombreCliente,
-                Direccion = model.DireccionCliente,
-                Total = model.Total,
-                TotalPagar = model.Total, // Ajusta según el modelo si es necesario
-                DetalleVenta = model.DetalleVenta.Select(d => new DetalleVenta
-                {
-                    Precio = d.PrecioUnitario, // Mapea PrecioUnitario del ViewModel a Precio del modelo
-                    Suma = d.Subtotal,         // Mapea Subtotal del ViewModel a Suma del modelo
-                    Cantidad = d.Cantidad,
-                    IdProducto = d.IdProducto  // Asume que tienes un campo IdProducto en el ViewModel
-                }).ToList()
-            };
+        //[HttpPost]
+        //public async Task<IActionResult> ProcesarVenta(VentaViewModel model)
+        //{
+        //    // Crear una nueva instancia de la entidad Venta
+        //    var venta = new Venta
+        //    {
+        //        Fecha = model.Fecha,
+        //        Nombre = model.NombreCliente,
+        //        Direccion = model.DireccionCliente,
+        //        Total = model.Total,
+        //        TotalPagar = model.Total, // Ajusta según el modelo si es necesario
+        //        DetalleVenta = model.DetalleVenta.Select(d => new DetalleVenta
+        //        {
+        //            Precio = d.PrecioUnitario, // Mapea PrecioUnitario del ViewModel a Precio del modelo
+        //            Suma = d.Subtotal,         // Mapea Subtotal del ViewModel a Suma del modelo
+        //            Cantidad = d.Cantidad,
+        //            IdProducto = d.IdProducto  // Asume que tienes un campo IdProducto en el ViewModel
+        //        }).ToList()
+        //    };
 
-            // Guardar la venta en la base de datos
-            _context.Venta.Add(venta);
-            await _context.SaveChangesAsync();
+        //    // Guardar la venta en la base de datos
+        //    _context.Venta.Add(venta);
+        //    await _context.SaveChangesAsync();
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
     }
 }
