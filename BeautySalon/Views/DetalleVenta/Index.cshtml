@@ -14,95 +14,68 @@
     <title>@ViewData["Title"]</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            color: #68217A;
         }
 
-        .search-container {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-            .search-container input {
-                width: 100%;
-                padding: 10px 15px;
-                border: 1px solid #ced4da;
-                border-radius: 25px;
-                padding-left: 40px;
-                font-size: 1rem;
-            }
-
-            .search-container .fa-search {
-                position: absolute;
-                top: 50%;
-                left: 15px;
-                transform: translateY(-50%);
-                color: #6c757d;
-                font-size: 1.2rem;
-            }
-
-        .btn-add {
+        .btn-success {
             background-color: #28a745;
-            color: white;
-            border: none;
+            border-color: #28a745;
         }
 
-            .btn-add:hover {
+            .btn-success:hover {
                 background-color: #218838;
+                border-color: #1e7e34;
             }
 
-        table {
-            background-color: white;
+        .table th {
+            background-color: #68217A;
+            color: white;
         }
 
-            table th, table td {
-                text-align: center;
-                vertical-align: middle;
-            }
-
-
-
+        .form-label {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <h1>Detalle de Venta</h1>
 
-
-        <!-- Formulario para procesar la venta -->
-        <form action="/DetalleVenta/ProcesarVenta" method="post">
-           
-            <!-- Fecha y Código -->
-            <div class="row mb-3">
+        <form action="/DetalleVenta/ProcesarVenta" method="post" onsubmit="prepararFormulario()">
+            <!-- Información General -->
+            <div class="row mb-4">
                 <div class="col-md-6">
                     <label for="Fecha" class="form-label">Fecha:</label>
-                    <input type="date" id="Fecha" name="Fecha" class="form-control" />
+                    <input type="date" id="Fecha" name="Fecha" class="form-control" required />
                 </div>
                 <div class="col-md-6">
                     <label for="Codigo" class="form-label">Código:</label>
                     <input type="text" id="Codigo" name="Codigo" class="form-control" placeholder="Ingrese el código" required />
                 </div>
             </div>
-            <!-- Información del cliente -->
-            <div class="mb-3">
+
+            <!-- Información del Cliente -->
+            <div class="mb-4">
                 <label for="Nombre" class="form-label">Nombre:</label>
-                <input type="text" id="Nombre" name="Nombre" class="form-control" required />
+                <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="Nombre del cliente" required />
             </div>
-            <div class="mb-3">
+            <div class="mb-4">
                 <label for="Direccion" class="form-label">Dirección:</label>
-                <input type="text" id="Direccion" name="Direccion" class="form-control" required />
+                <input type="text" id="Direccion" name="Direccion" class="form-control" placeholder="Dirección del cliente" required />
             </div>
 
-            <!-- Selección de productos -->
-            <div class="mb-3">
+            <!-- Selección de Productos -->
+            <div class="mb-4">
                 <label for="terminoBusqueda" class="form-label">Seleccione un producto:</label>
-                <div class="d-flex">
-                    <select id="terminoBusqueda" class="form-select me-2">
+                <div class="input-group">
+                    <select id="terminoBusqueda" class="form-select">
                         <option value="">Seleccione un producto</option>
                         @foreach (var producto in ViewBag.Producto)
                         {
@@ -111,62 +84,50 @@
                             </option>
                         }
                     </select>
-                    <button type="button" onclick="agregarProducto()" class="btn btn-info">Agregar Producto</button>
+                    <button type="button" class="btn btn-info ms-2" onclick="agregarProducto()">Agregar</button>
                 </div>
             </div>
 
-            <!-- Tabla de productos -->
+            <!-- Tabla de Productos -->
             <table id="resultadosBusqueda" class="table table-bordered table-striped">
-                <thead style="background-color: #68217A; color: Black;">
+                <thead>
                     <tr>
                         <th>Cantidad</th>
                         <th>Descripción</th>
                         <th>Precio Unitario</th>
-                        <th>Suma</th>
+                        <th>Total</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Aquí se agregarán los productos seleccionados -->
                 </tbody>
             </table>
 
+            <!-- Campo oculto para ProductosJson -->
+            <input type="hidden" id="ProductosJson" name="ProductosJson" />
 
             <!-- Totales -->
-            <div class="row">
-                <div class="col-md-4 mb-3">
+            <div class="row mb-4">
+                <div class="col-md-4">
                     <label for="descuento" class="form-label">Descuento:</label>
                     <input type="number" id="descuento" name="descuento" value="0" class="form-control" oninput="calculateTotals()" />
                 </div>
-                <div class="mb-3">
-                    <label for="Direccion" class="form-label">VentasExentas:</label>
-                    <input type="text" id="VentasExentas" name="VentasExentas" class="form-control" required />
-                </div>
-                <div class="col-md-4 mb-3">
+                <div class="col-md-4">
                     <label for="IVA" class="form-label">IVA:</label>
-                    <input type="text" id="IVA" name="IVA" readonly class="form-control" value="0" />
+                    <input type="text" id="IVA" name="IVA" class="form-control" value="0" readonly />
                 </div>
-                <div class="col-md-4 mb-3">
-                    <label for="Total" class="form-label">Total a Pagar:</label>
-                    <input type="text" id="Total" name="Total" readonly class="form-control" value="0" />
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="Total" class="form-label">Total  Pagar:</label>
-                    <input type="text" id="TotaPagar" name="TotalPagar" readonly class="form-control" value="0" />
+                <div class="col-md-4">
+                    <label for="Total" class="form-label">Total:</label>
+                    <input type="text" id="Total" name="Total" class="form-control" value="0" readonly />
                 </div>
             </div>
 
-            <div class="d-flex justify-content-center mt-3">
-                <button class="btn btn-success px-4 py-2">Procesar</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4 py-2">Procesar Venta</button>
             </div>
-
         </form>
     </div>
 
-    <!-- Iconos de FontAwesome -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
-    <!-- Script de funcionalidad -->
     <script>
         const productosSeleccionados = [];
 
@@ -176,15 +137,16 @@
             const productoSeleccionado = select.options[select.selectedIndex];
             const precioUnitario = parseFloat(productoSeleccionado.getAttribute("data-precio")) || 0;
 
-            if (!productoSeleccionado.value) return alert("Seleccione un producto");
+            if (!productoSeleccionado.value) {
+                alert("Seleccione un producto");
+                return;
+            }
 
-            // Verificar si el producto ya está en la lista
-            const productoExistente = productosSeleccionados.find(p => p.descripcion === productoSeleccionado.text);
-            if (productoExistente) {
-                productoExistente.cantidad += 1; // Incrementar cantidad
-                productoExistente.total = productoExistente.cantidad * productoExistente.precioUnitario;
+            const existente = productosSeleccionados.find(p => p.descripcion === productoSeleccionado.text);
+            if (existente) {
+                existente.cantidad += 1;
+                existente.total = existente.cantidad * existente.precioUnitario;
             } else {
-                // Agregar nuevo producto
                 productosSeleccionados.push({
                     cantidad,
                     descripcion: productoSeleccionado.text,
@@ -199,32 +161,28 @@
 
         function renderTabla() {
             const tbody = document.querySelector("#resultadosBusqueda tbody");
-            tbody.innerHTML = "";
-
-            productosSeleccionados.forEach((producto, index) => {
-                const row = `<tr>
-                                <td>
-                                    <input type="number" value="${producto.cantidad}" min="1" class="form-control cantidad-input"
-                                        onchange="actualizarCantidad(${index}, this.value)" />
-                                </td>
-                                <td>${producto.descripcion}</td>
-                                <td>${producto.precioUnitario.toFixed(2)}</td>
-                                <td>${producto.total.toFixed(2)}</td>
-                                <td>
-                                    <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${index})">Eliminar</button>
-                                </td>
-                            </tr>`;
-                tbody.innerHTML += row;
-            });
+            tbody.innerHTML = productosSeleccionados.map((producto, index) => `
+                        <tr>
+                            <td>
+                                <input type="number" value="${producto.cantidad}" min="1" class="form-control"
+                                    onchange="actualizarCantidad(${index}, this.value)" />
+                            </td>
+                            <td>${producto.descripcion}</td>
+                            <td>${producto.precioUnitario.toFixed(2)}</td>
+                            <td>${producto.total.toFixed(2)}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="eliminarProducto(${index})">Eliminar</button>
+                            </td>
+                        </tr>
+                    `).join('');
         }
 
         function actualizarCantidad(index, nuevaCantidad) {
             nuevaCantidad = parseInt(nuevaCantidad);
             if (isNaN(nuevaCantidad) || nuevaCantidad < 1) {
-                alert("La cantidad debe ser un número válido mayor a 0");
+                alert("Cantidad inválida");
                 return;
             }
-
             productosSeleccionados[index].cantidad = nuevaCantidad;
             productosSeleccionados[index].total = nuevaCantidad * productosSeleccionados[index].precioUnitario;
 
@@ -249,6 +207,9 @@
             document.getElementById("Total").value = (subtotal + IVA).toFixed(2);
         }
 
+        function prepararFormulario() {
+            document.getElementById("ProductosJson").value = JSON.stringify(productosSeleccionados);
+        }
     </script>
 </body>
 </html>
