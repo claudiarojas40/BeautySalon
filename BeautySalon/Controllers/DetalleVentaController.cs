@@ -15,6 +15,8 @@ namespace BeautySalon.Controllers
         {
             _context = context;
         }
+
+        //Accion para procesar los datos ingresados
         [HttpPost]
         public async Task<IActionResult> ProcesarVenta(Venta pVenta, List<DetalleVenta> pDetalleVentas)
         {
@@ -22,7 +24,7 @@ namespace BeautySalon.Controllers
             _context.Add(pVenta);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-           
+
         }
 
         // GET: DetalleVenta
@@ -33,6 +35,7 @@ namespace BeautySalon.Controllers
         //}
 
         // GET: DetalleVenta/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -63,6 +66,7 @@ namespace BeautySalon.Controllers
         // POST: DetalleVenta/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Precio,Suma,IdProducto,IdVenta,Cantidad")] DetalleVenta detalleVenta)
@@ -99,6 +103,7 @@ namespace BeautySalon.Controllers
         // POST: DetalleVenta/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Precio,Suma,IdProducto,IdVenta,Cantidad")] DetalleVenta detalleVenta)

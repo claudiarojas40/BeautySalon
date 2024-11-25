@@ -41,33 +41,53 @@
 
     <main>
 
-        <div class="container marketing">
+        <style>
+            .card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
 
-            <!-- Three columns of text below the carousel -->
+                .card:hover {
+                    transform: translateY(-10px); /* Desplaza la tarjeta hacia arriba */
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Añade sombra para resaltar */
+                }
+        </style>
+
+        <div class="container marketing">
+            <!-- Three cards below the carousel -->
             <div class="row">
                 <div class="col-lg-4">
-                    <img src="~/Imagenes/Cortedecabello.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Descripción de la imagen">
-
-                    <h2>Corte de cabello para Dama</h2>
-                    <p> "Renueva tu imagen este 2025 con un corte de cabello que realce tu belleza natural. Nuestra estilista profesional está aquí para ayudarte a encontrar el look perfecto."</p>
+                    <div class="card h-100 text-center">
+                        <img src="~/Imagenes/Cortedecabello.jpg" class="card-img-top" alt="Corte de cabello para Dama">
+                        <div class="card-body">
+                            <h5 class="card-title">Corte de cabello para Dama</h5>
+                            <p class="card-text">Renueva tu imagen este 2025 con un corte de cabello que realce tu belleza natural. Nuestra estilista profesional está aquí para ayudarte a encontrar el look perfecto.</p>
+                        </div>
+                    </div>
                 </div><!-- /.col-lg-4 -->
+
                 <div class="col-lg-4">
-                    <img src="~/Imagenes/Delineado.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Descripción de la imagen">
-
-                    <h2>Maquillaje profesional para Dama</h2>
-                    <p>"Resalta tus facciones con un maquillaje hecho a la medida para cada ocasión especial. Ya sea para eventos formales o casuales, nuestras artistas de maquillaje profesional crearán tu look."</p>
-
+                    <div class="card h-100 text-center">
+                        <img src="~/Imagenes/Delineado.jpg" class="card-img-top" alt="Maquillaje profesional para Dama">
+                        <div class="card-body">
+                            <h5 class="card-title">Maquillaje profesional para Dama</h5>
+                            <p class="card-text">Resalta tus facciones con un maquillaje hecho a la medida para cada ocasión especial. Ya sea para eventos formales o casuales, nuestras artistas de maquillaje profesional crearán tu look.</p>
+                        </div>
+                    </div>
                 </div><!-- /.col-lg-4 -->
+
                 <div class="col-lg-4">
-                    <img src="~/Imagenes/Spa.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" alt="Descripción de la imagen">
-
-                    <h2>Spa masaje para Damas y caballeros</h2>
-                    <p> "Disfruta de un momento de relajación y bienestar con nuestros masajes especializados para damas y caballeros. Nuestro equipo de terapeutas altamente capacitados."</p>
-
+                    <div class="card h-100 text-center">
+                        <img src="~/Imagenes/Spa.jpg" class="card-img-top" alt="Spa masaje para Damas y caballeros">
+                        <div class="card-body">
+                            <h5 class="card-title">Spa masaje para Damas y Caballeros</h5>
+                            <p class="card-text">Disfruta de un momento de relajación y bienestar con nuestros masajes especializados para damas y caballeros. Nuestro equipo de terapeutas altamente capacitados.</p>
+                        </div>
+                    </div>
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
-            <!-- START THE FEATURETTES -->
             <hr class="featurette-divider">
+        </div><!-- /.container -->
+
 
             <div class="row featurette">
                 <div class="col-md-7">
@@ -81,10 +101,20 @@
                     </div>
 
                 </div>
-                <div class="col-md-5">
-                    <img src="~/Imagenes/nossssee.webp" width="400" height="400" alt="Descripción de la imagen">
+            <style>
+                .col-md-5 img {
+                    transition: transform 0.3s ease; /* Transición suave */
+                }
 
-                </div>
+                    .col-md-5 img:hover {
+                        transform: translateY(-10px); /* Desplaza la imagen hacia arriba */
+                    }
+            </style>
+
+            <div class="col-md-5">
+                <img src="~/Imagenes/eee.jpg" width="400" height="400" alt="Descripción de la imagen">
+            </div>
+
             </div>
 
             <hr class="featurette-divider">
