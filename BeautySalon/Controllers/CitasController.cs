@@ -2,6 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using BeautySalon.Models;
 using System.Drawing.Printing;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Document = iTextSharp.text.Document;
 
 namespace BeautySalon.Controllers
 {
@@ -143,6 +146,45 @@ namespace BeautySalon.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> ExportarPDF()
+        {
+            var citas = await _context.Citas.ToListAsync();
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                Document pdfDoc = new Document(PageSize.A4, 10, 10, 10, 10);
+                PdfWriter.GetInstance(pdfDoc, ms);
+                pdfDoc.Open();
+
+                pdfDoc.Add(new Paragraph("Lista de Citas"));
+                pdfDoc.Add(new Paragraph(" ")); // Espacio entre el título y la tabla
+
+                PdfPTable table = new PdfPTable(6); // 6 columnas para los datos de citas
+                table.AddCell("ID");
+                table.AddCell("Nombre Completo");
+                table.AddCell("Correo Electrónico");
+                table.AddCell("Número de Contacto");
+                table.AddCell("Servicios");
+                table.AddCell("Fecha de Registro");
+
+                foreach (var cita in citas)
+                {
+                    table.AddCell(cita.Id.ToString());
+                    table.AddCell(cita.NombreCompleto);
+                    table.AddCell(cita.CorreoElectronico);
+                    table.AddCell(cita.NumeroContacto);
+                    table.AddCell(cita.Servicios);
+                    table.AddCell(cita.FechaRegistro?.ToString("MM/dd/yyyy") ?? "");
+                }
+
+                pdfDoc.Add(table);
+                pdfDoc.Close();
+
+                return File(ms.ToArray(), "application/pdf", "Citas.pdf");
+            }
+        }
+
 
         private bool CitaExists(int id)
         {
