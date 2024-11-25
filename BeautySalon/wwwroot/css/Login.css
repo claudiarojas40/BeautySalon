@@ -1,7 +1,7 @@
 ﻿/* Fondo de la página */
 body {
-    background: linear-gradient(to bottom, #e3f2fd, #f8f9fa); /* Fondo degradado */
-    font-family: Arial, sans-serif;
+    background-color: #F8F0F8; /* Fondo suave y cálido */
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -18,66 +18,90 @@ body {
     width: 100%;
 }
 
-/* Cuadro del login */
 .Email-box {
-    background: linear-gradient(145deg, #ffffff, #e0e0e0); /* Fondo degradado del cuadro */
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background-color: #FFFFFF; /* Fondo blanco puro */
+    padding: 30px;
+    border-radius: 20px; /* Bordes suaves */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Sombra más suave y elegante */
     text-align: center;
-    width: 300px;
+    width: 340px;
+    border: 3px solid #F1C6D1; /* Borde rosa suave */
 }
 
 h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: #333;
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #000000; /* Letras negras */
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* Estilos del formulario */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
     .form-group label {
         display: block;
-        font-size: 14px;
-        color: #333;
-        margin-bottom: 5px;
+        font-size: 15px;
+        color: #000000; /* Letras negras */
+        margin-bottom: 8px;
+        font-weight: bold; /* Letras más gruesas */
     }
 
 .form-control {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #333;
-    font-size: 14px;
+    border: 1px solid #F1C6D1; /* Rosa suave */
+    border-radius: 10px;
+    background-color: #FEF2F5; /* Fondo rosa muy claro */
+    color: #000000; /* Texto negro */
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease-in-out;
 }
 
-/* Botón de login */
+    .form-control:focus {
+        outline: none;
+        border: 2px solid #F06292; /* Rosa fuerte en foco */
+        background-color: #FFF1F6;
+    }
+
 .btn-login {
     width: 100%;
-    padding: 10px;
-    background-color: #5c9eff; /* Azul pastel para combinar con el fondo */
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
+    padding: 12px;
+    background-color: #FFEBEE; /* Botón color crema claro */
+    color: #F06292; /* Texto rosa fuerte */
+    font-size: 17px;
+    border: 2px solid #F06292; /* Borde rosa fuerte */
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(240, 98, 146, 0.4); /* Sombra suave */
 }
 
     .btn-login:hover {
-        background-color: #3a78d7; /* Azul más oscuro al pasar el cursor */
-        transform: scale(1.05); /* Pequeño efecto de zoom */
+        background-color: #F06292; /* Fondo rosa fuerte al pasar el cursor */
+        color: white; /* Texto blanco */
+        border-color: #F06292; /* Borde rosa fuerte al pasar el cursor */
+        transform: translateY(-2px); /* Efecto de elevación */
     }
 
-/* Pie de página */
 footer {
     margin-top: 20px;
     font-size: 14px;
-    color: #555;
+    color: #000000; /* Letras negras */
+}
+
+/* Estilos adicionales */
+.Email-box::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 5px;
+    background: linear-gradient(90deg, #F06292, #F8BBD0); /* Degradado rosa */
+    margin: 0 auto 20px auto;
+    border-radius: 5px;
 }
